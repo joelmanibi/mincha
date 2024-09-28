@@ -2,3 +2,5 @@ node_modules/
 .env
 .prod.env
 package-lock.json
+# .gitignore
+config/db.config.js
