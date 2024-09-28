@@ -1,10 +1,14 @@
 const db = require("../../models");
 const Account = db.account;
 const Property = db.property;
+const MyConfig = require("../randomService")
 const { createAnnouncement,ifAnnounceExist, extractAnnouncementData } = require('./announcementService');
 
 
 exports.addAnnouncement = async (req, res) => {
+  const appointment = new Date();
+  const timestamp = Date.now();
+console.log(timestamp);
   const accountIsActived = await Account.findOne({
     where: {
       accountIsApproved: 1,
@@ -44,6 +48,7 @@ exports.addAnnouncement = async (req, res) => {
         const fullAnnouncementData = {
             ...announcementData,
             announcementProperty: req.body.announcementProperty,
+            announcementCode : "A-"+ timestamp 
         };
         await createAnnouncement(fullAnnouncementData);
 

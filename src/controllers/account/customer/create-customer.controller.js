@@ -25,7 +25,7 @@ exports.createCustomer = async (req, res) => {
         const user = await createUser(userData);
 
         const token = jwt.sign({ userId: user.userId }, config.secret, {
-            expiresIn: 120 // 2 min
+            expiresIn: 1200 // 20 min
           });
           
           const secretOTP = speakeasy.generateSecret({ length: 20 });
