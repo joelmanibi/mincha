@@ -1,4 +1,4 @@
-const config = require("../../../../config/auth.config");
+require('dotenv').config(); 
 var jwt = require("jsonwebtoken");
 const db = require("../../../models");
 const User = db.user;
@@ -24,7 +24,7 @@ exports.createCustomer = async (req, res) => {
           
         const user = await createUser(userData);
 
-        const token = jwt.sign({ userId: user.userId }, config.secret, {
+        const token = jwt.sign({ userId: user.userId }, process.env.SECRET_CONFIG, {
             expiresIn: 1200 // 20 min
           });
           

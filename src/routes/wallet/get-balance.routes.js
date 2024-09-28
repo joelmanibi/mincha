@@ -14,7 +14,7 @@ module.exports = function(app) {
   });
   app.get(
     "/api/wallet/get-balance",
-    [authJwt.verifyToken],
+    [authJwt.verifyUserToken],
     upload.array(),
     controller.getBalance
   );

@@ -1,4 +1,4 @@
-const config = require("../../../../config/auth.config");
+require('dotenv').config(); 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 const db = require("../../../models");
@@ -33,7 +33,7 @@ exports.signinCustomer = async (req, res) => {
             message: "Ce compte est desactivé"
           });
         };
-        const token = jwt.sign({ userId: userExist.userId }, config.secret, {
+        const token = jwt.sign({ userId: userExist.userId }, process.env.SECRET_CONFIG, {
             expiresIn: 120 // 2 min
           });
           const secretOTP = speakeasy.generateSecret({ length: 20 });

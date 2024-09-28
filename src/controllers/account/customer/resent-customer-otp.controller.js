@@ -1,10 +1,10 @@
-const config = require("../../../../config/auth.config");
 var jwt = require("jsonwebtoken");
 const db = require("../../../models");
 const User = db.user;
 const { sendMail } = require('../../mailService');
 const speakeasy = require('speakeasy');
 const { Op } = require('sequelize');
+require('dotenv').config(); 
 
 exports.resentCustomerOTP = async (req, res) => {
   
@@ -19,7 +19,7 @@ exports.resentCustomerOTP = async (req, res) => {
             }
           })
 
-        const token = jwt.sign({ userId: user.userId }, config.secret, {
+        const token = jwt.sign({ userId: user.userId }, process.env.SECRET_CONFIG, {
             expiresIn: 600 // s
           });
           

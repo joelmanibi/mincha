@@ -1,4 +1,4 @@
-const config = require("../../../../config/auth.config");
+require('dotenv').config(); 
 var jwt = require("jsonwebtoken");
 const db = require("../../../models");
 const User = db.user;
@@ -17,7 +17,7 @@ exports.validateCustomer = async (req, res) => {
             message: "Le code OTP est incorrecte"
           });
         }
-        const token = jwt.sign({ userId: user.userId }, config.secret, {
+        const token = jwt.sign({ userId: user.userId }, process.env.SECRET_CONFIG, {
             expiresIn: 8640000 // 100 jours
           });
         
