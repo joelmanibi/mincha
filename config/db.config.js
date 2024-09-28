@@ -1,40 +1,21 @@
-let environment;
+const dotenv = require('dotenv');
+const mode = process.env.NODE_ENV || 'development';
 
-// Définir manuellement le mode d'environnement (production ou développement)
-// Changez la valeur de la variable 'mode' en 'prod' ou 'dev' selon vos besoins
-let mode = 'dev';
+// Charger les variables d'environnement du bon fichier .env
+dotenv.config({ path: mode === 'production' ? '.prod.env' : '.env' });
 
-if (mode === 'prod') {
-    environment = {
-        HOST: "srv971.hstgr.io",
-        USER: "u405557378_tiko",
-        PASSWORD: "Adm3Pl2*",
-        DB: "u405557378_tiko",
-        dialect: "mysql",
-        pool: {
-            max: 5,
-            min: 0,
-            acquire: 30000,
-            idle: 10000
-        }
-    };
-} else if (mode === 'dev') {
-    environment = {
-        HOST: "localhost",
-        USER: "root",
-        PASSWORD: "",
-        DB: "mincha",
-        dialect: "mysql",
-        pool: {
-            max: 5,
-            min: 0,
-            acquire: 30000,
-            idle: 10000
-        }
-    };
-} else {
-    console.error("Mode d'environnement non reconnu. Utilisez 'prod' ou 'dev'.");
-    process.exit(1);
-}
+const environment = {
+    HOST: process.env.DB_HOST,
+    USER: process.env.DB_USER,
+    PASSWORD: process.env.DB_PASSWORD,
+    DB: process.env.DB_NAME,
+    dialect: "mysql",
+    pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+    }
+};
 
 module.exports = environment;

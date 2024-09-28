@@ -15,7 +15,7 @@ module.exports = function(app) {
   app.post(
     "/api/account/update-owner-file",
     
-    [authJwt.verifyToken],
+    [authJwt.verifyUserToken],
  
     controller.updateFile
   );
