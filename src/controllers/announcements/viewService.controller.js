@@ -1,18 +1,27 @@
 const db = require("../../models");
 const Announcement = db.announcement;
 const client = require('../../../config/redis.config');
+const { promisify } = require('util');
+
+// Convertir les méthodes Redis en promesses
+const getAsync = promisify(client.get).bind(client);
+const incrAsync = promisify(client.incr).bind(client);
+const delAsync = promisify(client.del).bind(client);
 
 // Fonction pour voir une annonce et incrémenter les vues dans Redis
 exports.countViewAnnouncement = async (req, res) => {
   try {
     const announcementId = req.params.announcementId;
 
-    // Incrémenter les vues dans Redis
-    client.incr(`announcement:${announcementId}:views`, (err, views) => {
-      if (err) return res.status(500).json({ message: 'Erreur Redis', error: err });
+    // Vérifier que Redis est bien connecté avant d'incrémenter
+    if (!client.isOpen) {
+      await client.connect();
+    }
 
-      res.status(200).json({ message: `Vues: ${views}` });
-    });
+    // Incrémenter les vues dans Redis
+    const views = await incrAsync(`announcement:${announcementId}:views`);
+    res.status(200).json({ message: `Vues: ${views}` });
+
   } catch (error) {
     res.status(500).json({ message: 'Erreur serveur', error });
   }
@@ -25,18 +34,21 @@ const syncViewsToDatabase = async () => {
     const announcements = await Announcement.findAll();
 
     // Boucle à travers chaque annonce et récupère ses vues depuis Redis
-    for (const announcement of announcements) {
-      client.get(`announcement:${announcement.announcementId}:views`, async (err, views) => {
-        if (views) {
-          // Mise à jour de la base de données
-          announcement.announcementView += parseInt(views, 10);
-          await announcement.save();
+    await Promise.all(announcements.map(async (announcement) => {
+      const views = await getAsync(`announcement:${announcement.announcementId}:views`);
 
-          // Supprimer les vues de Redis après la synchronisation
-          client.del(`announcement:${announcement.announcementId}:views`);
-        }
-      });
-    }
+      if (views) {
+        // Mise à jour de la base de données
+        announcement.announcementView += parseInt(views, 10);
+        await announcement.save();
+
+        // Supprimer les vues de Redis après la synchronisation
+        await delAsync(`announcement:${announcement.announcementId}:views`);
+      }
+    }));
+
+    console.log('Synchronisation des vues terminée.');
+
   } catch (error) {
     console.error('Erreur lors de la synchronisation des vues:', error);
   }
