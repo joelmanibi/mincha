@@ -1,12 +1,6 @@
 const db = require("../../models");
 const Announcement = db.announcement;
 const client = require('../../../config/redis.config');
-const { promisify } = require('util');
-
-// Convertir les méthodes Redis en promesses
-const getAsync = promisify(client.get).bind(client);
-const incrAsync = promisify(client.incr).bind(client);
-const delAsync = promisify(client.del).bind(client);
 
 // Fonction pour voir une annonce et incrémenter les vues dans Redis
 exports.countViewAnnouncement = async (req, res) => {
@@ -19,7 +13,7 @@ exports.countViewAnnouncement = async (req, res) => {
     }
 
     // Incrémenter les vues dans Redis
-    const views = await incrAsync(`announcement:${announcementId}:views`);
+    const views = await client.incr(`announcement:${announcementId}:views`);
     res.status(200).json({ message: `Vues: ${views}` });
 
   } catch (error) {
@@ -35,7 +29,7 @@ const syncViewsToDatabase = async () => {
 
     // Boucle à travers chaque annonce et récupère ses vues depuis Redis
     await Promise.all(announcements.map(async (announcement) => {
-      const views = await getAsync(`announcement:${announcement.announcementId}:views`);
+      const views = await client.get(`announcement:${announcement.announcementId}:views`);
 
       if (views) {
         // Mise à jour de la base de données
@@ -43,7 +37,7 @@ const syncViewsToDatabase = async () => {
         await announcement.save();
 
         // Supprimer les vues de Redis après la synchronisation
-        await delAsync(`announcement:${announcement.announcementId}:views`);
+        await client.del(`announcement:${announcement.announcementId}:views`);
       }
     }));
 
