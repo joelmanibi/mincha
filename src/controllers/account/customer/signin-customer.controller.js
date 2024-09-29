@@ -34,7 +34,7 @@ exports.signinCustomer = async (req, res) => {
           });
         };
         const token = jwt.sign({ userId: userExist.userId }, process.env.SECRET_CONFIG, {
-            expiresIn: 120 // 2 min
+            expiresIn: 1200 // 2 min
           });
           const secretOTP = speakeasy.generateSecret({ length: 20 });
           const OTP = speakeasy.totp({

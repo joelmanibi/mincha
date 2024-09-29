@@ -20,7 +20,7 @@ exports.resentCustomerOTP = async (req, res) => {
           })
 
         const token = jwt.sign({ userId: user.userId }, process.env.SECRET_CONFIG, {
-            expiresIn: 600 // s
+            expiresIn: 1200 // s
           });
           
           const secretOTP = speakeasy.generateSecret({ length: 20 });
