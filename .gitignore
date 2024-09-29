@@ -1,6 +1,9 @@
 node_modules/
+deploy.sh
 .env
 .prod.env
 package-lock.json
 # .gitignore
 config/db.config.js
+config/redis.config.js
+
