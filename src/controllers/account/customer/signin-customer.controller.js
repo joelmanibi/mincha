@@ -4,6 +4,8 @@ var bcrypt = require("bcryptjs");
 const db = require("../../../models");
 const User = db.user;
 const { Op } = require('sequelize');
+const speakeasy = require('speakeasy');
+const { sendMail } = require('../../mailService');
 
 exports.signinCustomer = async (req, res) => {
   
