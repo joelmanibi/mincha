@@ -5,6 +5,16 @@ module.exports = (sequelize, Sequelize) => {
         autoIncrement: true,
         primaryKey: true
       },
+      VisitCode: {
+        type: Sequelize.STRING,
+        autoIncrement: true,
+        primaryKey: true
+      },
+      contac: {
+        type: Sequelize.STRING,
+        autoIncrement: true,
+        primaryKey: true
+      },
       propertyAnnouncement: {
         type: Sequelize.INTEGER,
       },

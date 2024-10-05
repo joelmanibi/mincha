@@ -60,6 +60,8 @@ db.requestStatus = require("./lease/requestStatus.model.js")(sequelize, Sequeliz
 db.devis = require("./devis/devis.model.js")(sequelize, Sequelize);
 db.articledevis = require("./devis/articledevis.model.js")(sequelize, Sequelize);
 
+db.ville = require("ville.model.js")(sequelize, Sequelize);
+
 
 /////toutes les realtion one to many
 db.userRole.hasMany(db.user, { foreignKey: 'userRoleID' });
@@ -91,6 +93,9 @@ db.transaction.belongsTo(db.transactionType,{ foreignKey: 'transactionTypeID'});
 
 db.propertyType.hasMany(db.property, { foreignKey: 'propertyTypeID' });
 db.property.belongsTo(db.propertyType,{ foreignKey: 'propertyTypeID'});
+
+db.ville.hasMany(db.property, { foreignKey: 'propertyLocation' });
+db.property.belongsTo(db.ville,{ foreignKey: 'propertyLocation'});
 
 db.propertyDocType.hasMany(db.property, { foreignKey: 'propertyDocTypeID' });
 db.property.belongsTo(db.propertyDocType,{ foreignKey: 'propertyDocTypeID'});

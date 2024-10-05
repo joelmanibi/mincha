@@ -5,12 +5,12 @@ const { Op } = require('sequelize');
 
 
 checkDuplicateUser = (req, res, next) => {
-  
+  const userEmailLowerCase = req.body.userEmail.toLowerCase();
   User.findOne({
     where: {
       [Op.or]: [
         { userPhoneNumber: req.body.userPhoneNumber },
-        { userEmail: req.body.userEmail }
+        { userEmail: userEmailLowerCase }
       ]
     }
   }).then(user => {
@@ -28,12 +28,13 @@ checkDuplicateUser = (req, res, next) => {
 };
 
 checkDuplicateAccount = (req, res, next) => {
-  
+  const userEmailLowerCase = req.body.userEmail.toLowerCase();
+  const accountEmailLowerCase = req.body.accountEmail.toLowerCase();
   Account.findOne({
     where: {
       [Op.or]: [
         { accountNumber: req.body.accountNumber ? req.body.accountNumber : req.body.userPhoneNumber, },
-        { accountEmail: req.body.accountEmail ? req.body.accountEmail : req.body.userEmail, }
+        { accountEmail: accountEmailLowerCase ? accountEmailLowerCase : userEmailLowerCase }
       ]
     }
   }).then(user => {
