@@ -1,5 +1,5 @@
-const { authJwt } = require("../../middleware");
-const controller = require("../../controllers/announcements/visit/add-visit.controller");
+const { authJwt } = require("../../../middleware");
+const controller = require("../../../controllers/announcements/visit/add-visit.controller");
 var multer = require('multer');
 var upload = multer();
 
@@ -10,11 +10,10 @@ module.exports = function(app) {
       "x-access-token, Origin, Content-Type, Accept"
     );
     next();
-    
   });
   app.post(
     "/api/announcement/visit/add-visit",
-    [authJwt.verifyAccountToken],
+  //  [authJwt.verifyUserToken],
     upload.array(),
     controller.addVisit
   );

@@ -6,9 +6,7 @@ const { createAnnouncement,ifAnnounceExist, extractAnnouncementData } = require(
 
 
 exports.addAnnouncement = async (req, res) => {
-  const appointment = new Date();
   const timestamp = Date.now();
-console.log(timestamp);
   const accountIsActived = await Account.findOne({
     where: {
       accountIsApproved: 1,

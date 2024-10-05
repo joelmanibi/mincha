@@ -60,7 +60,7 @@ db.requestStatus = require("./lease/requestStatus.model.js")(sequelize, Sequeliz
 db.devis = require("./devis/devis.model.js")(sequelize, Sequelize);
 db.articledevis = require("./devis/articledevis.model.js")(sequelize, Sequelize);
 
-db.ville = require("ville.model.js")(sequelize, Sequelize);
+db.ville = require("./ville.model.js")(sequelize, Sequelize);
 
 
 /////toutes les realtion one to many

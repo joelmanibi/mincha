@@ -4,9 +4,8 @@ const Visit = db.visit;
 const extractVisitData = (req) => {
     return {
       propertyAnnouncement: req.body.propertyAnnouncement,
-      propertyDescription: req.body.propertyDescription,
       visitScheduledDate : req.body.visitScheduledDate,
-      visitScheduledHour :req.body.visitScheduledHour
+      contactClient : req.body.contactClient
     };
   };
 
@@ -17,8 +16,20 @@ const extractVisitData = (req) => {
     });
     return visit;
   };
+
+  const ifVisitExist = async (req) => {
+    const visit = await Visit.findOne({
+            where : {
+              clientId: req.userId,
+              propertyAnnouncement: req.body.propertyAnnouncement
+            },
+    });
+  
+    return visit;
+  };
   
   module.exports = {
     extractVisitData,
-    createVisit
+    createVisit,
+    ifVisitExist
   };

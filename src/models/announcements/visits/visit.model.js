@@ -8,10 +8,8 @@ module.exports = (sequelize, Sequelize) => {
       VisitCode: {
         type: Sequelize.STRING,
       },
-      contac: {
-        type: Sequelize.STRING,
-        autoIncrement: true,
-        primaryKey: true
+      contactClient: {
+        type: Sequelize.STRING
       },
       propertyAnnouncement: {
         type: Sequelize.INTEGER,
