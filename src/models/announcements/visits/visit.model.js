@@ -7,8 +7,6 @@ module.exports = (sequelize, Sequelize) => {
       },
       VisitCode: {
         type: Sequelize.STRING,
-        autoIncrement: true,
-        primaryKey: true
       },
       contac: {
         type: Sequelize.STRING,
