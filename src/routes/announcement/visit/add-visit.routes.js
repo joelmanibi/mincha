@@ -13,7 +13,7 @@ module.exports = function(app) {
   });
   app.post(
     "/api/announcement/visit/add-visit",
-  //  [authJwt.verifyUserToken],
+   [authJwt.verifyUserToken],
     upload.array(),
     controller.addVisit
   );
