@@ -23,6 +23,7 @@
   deleteAnnouncementRoutes = require('./announcement/delete-announcement.routes');
   viewServiceRoutes = require('./announcement/countAnnouncementView.routes');
   addVisitRoutes = require('./announcement/visit/add-visit.routes');
+  getmyVisitRoutes = require('./announcement/visit/getmy-visit.routes');
 
   module.exports = (app) => {
     resentCustomerRoutes(app);
@@ -48,5 +49,6 @@
     deleteAnnouncementRoutes(app);
     viewServiceRoutes(app);
     addVisitRoutes(app);
+    getmyVisitRoutes(app)
     
   };

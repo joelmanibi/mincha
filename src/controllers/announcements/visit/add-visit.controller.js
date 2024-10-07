@@ -15,7 +15,7 @@ exports.addVisit = async (req, res) => {
         const visitData = extractVisitData(req);
         const fullVisitData = {
             ...visitData,
-            VisitCode : "V-"+ timestamp,
+            VisitCode: "V-"+ timestamp,
             clientId: req.userId
         };
         await createVisit(fullVisitData);

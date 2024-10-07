@@ -1,9 +1,11 @@
 const db = require("../../models");
 const Announcement = db.announcement;
+const AnnouncementType = db.announcementType;
 const Property = db.property;
 const PropertyType = db.propertyType;
 const PropertyDocType = db.propertyDocType;
 const PropertyLevel = db.level;
+const PropertyPhoto = db.propertyPhoto
 
 const extractAnnouncementData = (req) => {
   
@@ -49,12 +51,17 @@ const extractAnnouncementData = (req) => {
                   },
                   {
                     model: PropertyLevel
+                  },
+                  {
+                    model: PropertyPhoto, // Inclusion des photos associées à la propriété
                   }
               ]
-            }
+            },
+            {
+              model: AnnouncementType
+            },
           ]
     });
-  
     return announcement;
   };
 

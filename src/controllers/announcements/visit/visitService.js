@@ -1,5 +1,11 @@
 const db = require("../../../models");
 const Visit = db.visit;
+const Announcement = db.announcement;
+const Property = db.property;
+const PropertyType = db.propertyType;
+const PropertyDocType = db.propertyDocType;
+const PropertyLevel = db.level;
+const PropertyPhoto = db.propertyPhoto;
 
 const extractVisitData = (req) => {
     return {
@@ -24,11 +30,45 @@ const extractVisitData = (req) => {
               propertyAnnouncement: req.body.propertyAnnouncement
             },
     });
+    return visit;
+  };
+
+  const getMyVisit = async (userId) => {
+    const visit = await Visit.findAll({
+      where : {
+        clientId: userId,
+      },
+        include : [
+            {
+              model: Announcement,
+              include: [
+                {
+                    model: Property,
+                    include: [
+                      {
+                          model: PropertyType
+                        },
+                        {
+                          model: PropertyDocType
+                        },
+                        {
+                          model: PropertyLevel
+                        },
+                        {
+                          model: PropertyPhoto
+                        }
+                    ]
+                  }
+              ]
+            }
+          ]
+    });
   
     return visit;
   };
   
   module.exports = {
+    getMyVisit,
     extractVisitData,
     createVisit,
     ifVisitExist

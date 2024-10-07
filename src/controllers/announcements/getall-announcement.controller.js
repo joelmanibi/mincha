@@ -13,12 +13,10 @@ exports.getAllAnnouncements = async (req,res) => {
           statutcode: 0
         });
       };
-        
         res.status(200).json({
           announcement,
           statutcode: 1
          });
-        
     } catch (error) {
       res.status(500).send({ message: error.message });
     }
