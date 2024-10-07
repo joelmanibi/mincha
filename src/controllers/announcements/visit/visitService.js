@@ -5,6 +5,7 @@ const Property = db.property;
 const PropertyType = db.propertyType;
 const PropertyDocType = db.propertyDocType;
 const PropertyLevel = db.level;
+const Ville =db.ville
 const PropertyPhoto = db.propertyPhoto;
 
 const extractVisitData = (req) => {
@@ -45,8 +46,11 @@ const extractVisitData = (req) => {
                 {
                     model: Property,
                     include: [
-                      {
+                       {
                           model: PropertyType
+                        },
+                        {
+                          model: Ville
                         },
                         {
                           model: PropertyDocType
