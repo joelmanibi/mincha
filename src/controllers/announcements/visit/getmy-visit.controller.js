@@ -5,7 +5,7 @@ const { getMyVisit } = require('./visitService');
 exports.getMyVisits = async (req,res) => {
   
   try {
-    const visit = await getMyVisit(19)
+    const visit = await getMyVisit(req.userId)
     if (visit.length == 0) {
       return res.status(403).send({
         message: "Aucun rendez-vous trouvé",
