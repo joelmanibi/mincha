@@ -18,7 +18,11 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.INTEGER
       },
       propertyArea: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+      },
+      piscine: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: 0
       },
       livingRoom: {
         type: Sequelize.INTEGER
@@ -26,8 +30,9 @@ module.exports = (sequelize, Sequelize) => {
       bedroom :{
         type: Sequelize.INTEGER
       },
-      bathroom :{
-        type: Sequelize.INTEGER
+      garagePlace :{
+        type: Sequelize.INTEGER,
+        defaultValue: 0
       },
       bathroom :{
         type: Sequelize.INTEGER

@@ -12,7 +12,8 @@ const extractPropertyData = (req) => {
         livingRoom: req.body.livingRoom,
         bedroom: req.body.bedroom,
         bathroom: req.body.bathroom,
-        propertyLevel: req.body.propertyLevel,
+        garagePlace: req.body.garagePlace,
+        propertyLevel: req.body.propertyLevel
         
         
     };
