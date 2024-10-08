@@ -22,7 +22,7 @@ if [[ -n $(git status --porcelain) ]]; then
 
     # Pousser les modifications vers le dépôt distant
     echo "Poussée des modifications vers GitHub..."
-    git push https://github.com/joelmanibi/mincha main
+    git push origin main
 
     echo "Déploiement terminé avec succès !"
 else
