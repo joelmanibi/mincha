@@ -1,5 +1,6 @@
 const db = require("../../../models");
 const Favorite = db.favorite;
+const Announcement = db.announcement;
 const extractFavoriteData = (req) => {
     return {
         favoriteAnnouncement: req.body.favoriteAnnouncement,
@@ -56,7 +57,7 @@ const extractFavoriteData = (req) => {
                 {
                     model: Property,
                     include: [
-                       {
+                        {
                           model: PropertyType
                         },
                         {
