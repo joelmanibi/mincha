@@ -6,7 +6,7 @@ exports.getMyfavorites = async (req,res) => {
     const favorite = await getMyfavorite(req)
     if (favorite.length == 0) {
       return res.status(403).send({
-        message: "Aucun rendez-vous trouvé",
+        message: "Aucun annonce dans vos favoris",
         statutcode: 0
       });
     };
