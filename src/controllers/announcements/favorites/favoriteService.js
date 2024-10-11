@@ -1,6 +1,14 @@
 const db = require("../../../models");
 const Favorite = db.favorite;
 const Announcement = db.announcement;
+const AnnouncementType = db.announcementType;
+const Property = db.property;
+const PropertyType = db.propertyType;
+const PropertyDocType = db.propertyDocType;
+const PropertyLevel = db.level;
+const Ville = db.ville;
+const PropertyPhoto = db.propertyPhoto
+
 const extractFavoriteData = (req) => {
     return {
         favoriteAnnouncement: req.body.favoriteAnnouncement,
@@ -73,6 +81,9 @@ const extractFavoriteData = (req) => {
                           model: PropertyPhoto
                         }
                     ]
+                  },
+                  {
+                    model: AnnouncementType,
                   }
               ]
             }

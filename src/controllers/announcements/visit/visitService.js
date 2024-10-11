@@ -7,6 +7,8 @@ const PropertyDocType = db.propertyDocType;
 const PropertyLevel = db.level;
 const Ville =db.ville
 const PropertyPhoto = db.propertyPhoto;
+const AnnouncementType = db.announcementType;
+
 
 const extractVisitData = (req) => {
     return {
@@ -62,7 +64,10 @@ const extractVisitData = (req) => {
                           model: PropertyPhoto
                         }
                     ]
-                  }
+                  },
+                  {
+                    model: AnnouncementType,
+                },
               ]
             }
           ]

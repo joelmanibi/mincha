@@ -11,14 +11,10 @@ const PropertyPhoto = db.propertyPhoto
 const extractAnnouncementData = (req) => {
   
     return {
-        
-        
         announcementTypeID: req.body.announcementTypeID,
         propertyPrice: req.body.propertyPrice,
         propertyDescription: req.body.propertyDescription,
         announcementStatusID: 1
-        
-        
     };
   };
   // Fonction pour créer un utilisateur
@@ -34,7 +30,6 @@ const extractAnnouncementData = (req) => {
     const announcement = await Announcement.update({
       ...announcementData, 
     },{ where: { announcementId: announcementId } });
-  
     return announcement;
   };
 
