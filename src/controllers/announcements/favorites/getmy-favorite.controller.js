@@ -4,7 +4,7 @@ const { getMyfavorite } = require('./favoriteService');
 exports.getMyfavorites = async (req,res) => {
   try {
     const favorite = await getMyfavorite(req)
-    if (visit.length == 0) {
+    if (favorite.length == 0) {
       return res.status(403).send({
         message: "Aucun rendez-vous trouvé",
         statutcode: 0

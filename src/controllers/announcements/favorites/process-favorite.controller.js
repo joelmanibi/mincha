@@ -29,7 +29,7 @@ exports.processFavorite = async (req, res) => {
                 statutcode: 1
             });
         } else {
-            // Si le favori est inactif, on le réactive
+            // Si le favori est inactif, on le réactive 
             await updateFavorite(req, 1);
             return res.status(200).json({
                 message: "Ajouté à la liste des Favoris",

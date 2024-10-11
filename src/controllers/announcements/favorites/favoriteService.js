@@ -53,6 +53,7 @@ const extractFavoriteData = (req) => {
         favoriteUser : req.userId } });
     return favorite;
   };
+  
   const getMyfavorite = async (req) => {
     const favorite = await Favorite.findAll({
       where : {
