@@ -1,12 +1,11 @@
 const db = require("../../models");
 const { getAllAnnouncement } = require('./announcementService');
-const util = require('util');
 
 exports.getAllAnnouncements = async (req,res) => {
   
     try {
 
-      const announcement = await getAllAnnouncement()
+      const announcement = await getAllAnnouncement(req.userId)
       if (announcement.length == 0) {
         return res.status(403).send({
           message: "Aucune proprieté trouvé",

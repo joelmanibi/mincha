@@ -8,7 +8,7 @@ exports.addVisit = async (req, res) => {
       const checkExstVisit = await ifVisitExist(req);
         if (checkExstVisit) {
             return res.status(403).send({
-              message: "Vous avez pris rendez-vous pour pour visiter ce bien",
+              message: "Vous avez déjà pris un rendez-vous pour ce bien. Merci de vérifier vos réservations.",
               statutcode:0
             });
           }

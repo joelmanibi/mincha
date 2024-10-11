@@ -28,4 +28,3 @@ if [[ -n $(git status --porcelain) ]]; then
 else
     echo "Aucune modification à déployer."
 fi
-

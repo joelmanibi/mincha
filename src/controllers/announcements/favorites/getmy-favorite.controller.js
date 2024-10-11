@@ -1,9 +1,9 @@
 const db = require("../../../models");
-const { getMyVisit } = require('./visitService');
+const { getMyfavorite } = require('./favoriteService');
 
-exports.getMyVisits = async (req,res) => {
+exports.getMyfavorites = async (req,res) => {
   try {
-    const visit = await getMyVisit(req.userId)
+    const favorite = await getMyfavorite(req)
     if (visit.length == 0) {
       return res.status(403).send({
         message: "Aucun rendez-vous trouvé",
@@ -11,7 +11,7 @@ exports.getMyVisits = async (req,res) => {
       });
     };
       res.status(200).json({
-        visit,
+        favorite,
         statutcode: 1
        });
   } catch (error) {

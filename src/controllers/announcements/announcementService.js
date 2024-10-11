@@ -38,36 +38,60 @@ const extractAnnouncementData = (req) => {
     return announcement;
   };
 
-  const getAllAnnouncement = async () => {
-    const announcement = await Announcement.findAll({
-        include : [
-            {
-              model: Property,
-              include: [
-                {
-                    model: PropertyType
-                  },
-                  {
-                    model: PropertyDocType
-                  },
-                  {
-                    model: PropertyLevel
-                  },
-                  {
-                    model: Ville
-                  },
-                  {
-                    model: PropertyPhoto, // Inclusion des photos associées à la propriété
-                  }
-              ]
-            },
-            {
-              model: AnnouncementType
-            },
-          ]
+  const getUserFavorites = async (userId) => {
+    return await Favorite.findAll({
+        where: { favoriteUser: userId, favoriteActive: 1 }, // Supposons que favoriteActive = 1 signifie que le favori est actif
+        attributes: ['favoriteAnnouncement'], // Récupérer seulement les IDs des annonces favorites
     });
-    return announcement;
-  };
+};
+
+  const getAllAnnouncement = async (userId) => {
+    try {
+        // Récupérer les annonces
+        const announcements = await Announcement.findAll({
+            include: [
+                {
+                    model: Property,
+                    include: [
+                        {
+                            model: PropertyType,
+                        },
+                        {
+                            model: PropertyDocType,
+                        },
+                        {
+                            model: PropertyLevel,
+                        },
+                        {
+                            model: Ville,
+                        },
+                        {
+                            model: PropertyPhoto, // Inclusion des photos associées à la propriété
+                        },
+                    ],
+                },
+                {
+                    model: AnnouncementType,
+                },
+            ],
+        });
+
+        // Récupérer les favoris de l'utilisateur
+        const userFavorites = await getUserFavorites(userId);
+        const favoriteIds = userFavorites.map(favorite => favorite.favoriteAnnouncement);
+
+        // Ajouter le champ IsFavorite
+        const announcementsWithFavoriteStatus = announcements.map(announcement => ({
+            ...announcement.toJSON(), // Convertir l'instance Sequelize en objet plain
+            IsFavorite: favoriteIds.includes(announcement.announcementId), // Vérifier si l'annonce est favorite
+        }));
+
+        return announcementsWithFavoriteStatus;
+    } catch (error) {
+        console.error("Error fetching announcements: ", error);
+        throw new Error("Unable to fetch announcements");
+    }
+};
 
   const getMyAnnouncement = async (accountId) => {
     const announcement = await Announcement.findAll({

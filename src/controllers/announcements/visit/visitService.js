@@ -67,7 +67,6 @@ const extractVisitData = (req) => {
             }
           ]
     });
-  
     return visit;
   };
   

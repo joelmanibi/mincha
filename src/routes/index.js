@@ -1,3 +1,4 @@
+const processFavoriteRoutes = require('./announcement/favorite/process-favorite.routes');
 
   resentCustomerRoutes = require('./account/customer/resent-customer-otp.routes');
   createcustomerRoutes = require('./account/customer/create-customer.routes');
@@ -24,6 +25,8 @@
   viewServiceRoutes = require('./announcement/countAnnouncementView.routes');
   addVisitRoutes = require('./announcement/visit/add-visit.routes');
   getmyVisitRoutes = require('./announcement/visit/getmy-visit.routes');
+  procesFavoriteRoutes = require('./announcement/favorite/process-favorite.routes');
+  getmyFavoriteRoutes = require('./announcement/favorite/getmy-favorite.routes');
 
   module.exports = (app) => {
     resentCustomerRoutes(app);
@@ -49,6 +52,8 @@
     deleteAnnouncementRoutes(app);
     viewServiceRoutes(app);
     addVisitRoutes(app);
-    getmyVisitRoutes(app)
+    getmyVisitRoutes(app);
+    procesFavoriteRoutes(app);
+    getmyFavoriteRoutes(app)
     
   };

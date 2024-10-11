@@ -61,6 +61,7 @@ db.devis = require("./devis/devis.model.js")(sequelize, Sequelize);
 db.articledevis = require("./devis/articledevis.model.js")(sequelize, Sequelize);
 
 db.ville = require("./ville.model.js")(sequelize, Sequelize);
+db.favorite = require("./announcements/favorites/favorite.model.js")(sequelize, Sequelize);
 
 
 /////toutes les realtion one to many
@@ -99,6 +100,12 @@ db.property.belongsTo(db.ville,{ foreignKey: 'propertyLocation'});
 
 db.propertyDocType.hasMany(db.property, { foreignKey: 'propertyDocTypeID' });
 db.property.belongsTo(db.propertyDocType,{ foreignKey: 'propertyDocTypeID'});
+
+db.user.hasMany(db.favorite, { foreignKey: 'favoriteUser' });
+db.favorite.belongsTo(db.user,{ foreignKey: 'favoriteUser'});
+
+db.announcement.hasMany(db.favorite, { foreignKey: 'favoriteAnnouncement' });
+db.favorite.belongsTo(db.announcement,{ foreignKey: 'favoriteAnnouncement'});
 
 db.level.hasMany(db.property, { foreignKey: 'propertyLevel' });
 db.property.belongsTo(db.level,{ foreignKey: 'propertyLevel'});
