@@ -11,7 +11,7 @@ module.exports = function(app) {
     );
     next();
   });
-  app.post(
+  app.get(
     "/api/announcement/favorite/getmy-favorite",
    [authJwt.verifyUserToken],
     upload.array(),
