@@ -1,5 +1,5 @@
-const { authJwt } = require("../../middleware");
-const controller = require("../../controllers/announcements/getall-announcement.controller");
+const { authJwt } = require("../../../middleware");
+const controller = require("../../../controllers/announcements/announcementType/announcementType.controller");
 
 
 module.exports = function(app) {
@@ -12,9 +12,9 @@ module.exports = function(app) {
     
   });
   app.get(
-    "/api/announcement/getall-announcement",
+    "/api/announcement/getall-announcement-type",
     [authJwt.verifyUserToken],
   //  upload.array(),
-    controller.getAllAnnouncements
+    controller.getAllAnnouncementTypes
   );
 };

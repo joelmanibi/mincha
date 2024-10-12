@@ -1,19 +1,19 @@
 const db = require("../../models");
-const { getAllAnnouncementType } = require('./announcementService');
+const { getAllAtype } = require('./serviceType');
 
 exports.getAllAnnouncementTypes = async (req,res) => {
   
     try {
 
-      const announcement = await getAllAnnouncementType(req.userId)
-      if (announcement.length == 0) {
+      const announcementType = await getAllAtype()
+      if (announcementType.length == 0) {
         return res.status(403).send({
-          message: "Aucune proprieté trouvé",
+          message: "Aucun type d'annonce trouvé",
           statutcode: 0
         });
       };
         res.status(200).json({
-          announcement,
+          announcementType,
           statutcode: 1
          });
     } catch (error) {
