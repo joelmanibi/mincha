@@ -1,4 +1,3 @@
-const db = require("../../models");
 const { getAllAnnouncement } = require('./announcementService');
 
 exports.getAllAnnouncements = async (req,res) => {

@@ -1,7 +1,6 @@
 const db = require("../../models");
 const Account = db.account;
 const Property = db.property;
-const MyConfig = require("../randomService")
 const { createAnnouncement,ifAnnounceExist, extractAnnouncementData } = require('./announcementService');
 
 

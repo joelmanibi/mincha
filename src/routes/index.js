@@ -27,7 +27,7 @@ const processFavoriteRoutes = require('./announcement/favorite/process-favorite.
   getmyVisitRoutes = require('./announcement/visit/getmy-visit.routes');
   procesFavoriteRoutes = require('./announcement/favorite/process-favorite.routes');
   getmyFavoriteRoutes = require('./announcement/favorite/getmy-favorite.routes');
-  getallAnnouncementTypeRoutes = require('./announcement/announcementType/getAnnouncemetType.routes');
+  getallAnnouncementTypeRoutes = require('./announcement/announcementType/getAnnouncemetType.route');
   module.exports = (app) => {
     resentCustomerRoutes(app);
     createcustomerRoutes(app);
