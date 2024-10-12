@@ -14,6 +14,7 @@ const processFavoriteRoutes = require('./announcement/favorite/process-favorite.
   updateUpdateRoutes = require('./property/update-property.routes');
   deletePropertyRoutes = require('./property/delete-property.routes');
   getallPropertyRoutes = require('./property/getall-property.routes');
+  getallPropertyTypeRoutes = require('./property/getall-propertyType.routes');
   getPropertyphotoRoutes = require('./property/get-property-photo.routes');
   getmyPropertyRoutes = require('./property/getmy-property.routes');
   updatePropertyRoutes = require('./property/update-property-file.routes');
@@ -54,6 +55,7 @@ const processFavoriteRoutes = require('./announcement/favorite/process-favorite.
     addVisitRoutes(app);
     getmyVisitRoutes(app);
     procesFavoriteRoutes(app);
-    getmyFavoriteRoutes(app)
-    getallAnnouncementTypeRoutes(app)
+    getmyFavoriteRoutes(app);
+    getallAnnouncementTypeRoutes(app);
+    getallPropertyTypeRoutes(app)
   };
