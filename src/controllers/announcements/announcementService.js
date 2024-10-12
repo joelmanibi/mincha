@@ -6,6 +6,7 @@ const PropertyType = db.propertyType;
 const PropertyDocType = db.propertyDocType;
 const PropertyLevel = db.level;
 const Ville = db.ville;
+const Favorite = db.favorite;
 const PropertyPhoto = db.propertyPhoto
 
 const extractAnnouncementData = (req) => {
