@@ -42,7 +42,6 @@ const extractAnnouncementData = (req) => {
 };
 
   const getAllAnnouncement = async (userId) => {
-    
     try {
         // Récupérer les annonces
         const announcements = await Announcement.findAll({

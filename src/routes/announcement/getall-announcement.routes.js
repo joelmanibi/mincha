@@ -14,7 +14,7 @@ module.exports = function(app) {
   });
   app.get(
     "/api/announcement/getall-announcement",
-    [authJwt.verifyAccountToken],
+    [authJwt.verifyUserToken],
   //  upload.array(),
     controller.getAllAnnouncements
   );

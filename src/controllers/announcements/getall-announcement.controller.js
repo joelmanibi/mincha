@@ -2,8 +2,6 @@ const db = require("../../models");
 const { getAllAnnouncement } = require('./announcementService');
 
 exports.getAllAnnouncements = async (req,res) => {
-  console.log(req.userId+"id");
-  console.log("voici tout le test");
   
     try {
 
