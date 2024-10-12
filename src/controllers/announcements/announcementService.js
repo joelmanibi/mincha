@@ -42,6 +42,8 @@ const extractAnnouncementData = (req) => {
 };
 
   const getAllAnnouncement = async (userId) => {
+    console.log(userId= "test log");
+    
     try {
         // Récupérer les annonces
         const announcements = await Announcement.findAll({
