@@ -74,6 +74,8 @@ const extractAnnouncementData = (req) => {
 
         // Récupérer les favoris de l'utilisateur
         const userFavorites = await getUserFavorites(userId);
+        console.log(userFavorites+ "voici un test");
+        
         const favoriteIds = userFavorites.map(favorite => favorite.favoriteAnnouncement);
 
         // Ajouter le champ IsFavorite
