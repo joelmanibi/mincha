@@ -36,7 +36,7 @@ const extractAnnouncementData = (req) => {
 
   const getUserFavorites = async (userId) => {
     return await Favorite.findAll({
-        where: { favoriteUser: userId, favoriteActive: 1 }, // Supposons que favoriteActive = 1 signifie que le favori est actif
+        where: { favoriteUser: 74, favoriteActive: 1 }, // Supposons que favoriteActive = 1 signifie que le favori est actif
         attributes: ['favoriteAnnouncement'], // Récupérer seulement les IDs des annonces favorites
     });
 };
@@ -74,7 +74,6 @@ const extractAnnouncementData = (req) => {
 
         // Récupérer les favoris de l'utilisateur
         const userFavorites = await getUserFavorites(userId);
-        console.log(userFavorites+ "voici un test");
         
         const favoriteIds = userFavorites.map(favorite => favorite.favoriteAnnouncement);
 
