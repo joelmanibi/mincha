@@ -31,8 +31,25 @@ const extractCommonUserData = (req) => {
   
     return user;
   };
+
+  const updateUser = async (userId, updateData) => {
+    try {
+      const [updated] = await User.update(updateData, {
+        where: { userId }
+      });
+  
+      if (updated) {
+        return await User.findOne({ where: { userId } });
+      } else {
+        throw new Error("Utilisateur non trouvé");
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
   
   module.exports = {
+    updateUser,
     extractCommonUserData,
     createUser,
   };

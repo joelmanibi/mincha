@@ -45,8 +45,7 @@ exports.resentCustomerOTP = async (req, res) => {
   
       res.status(200).json({
         message : "Veuillez consulter votre boite mail pour le code de validation",
-        userToken: token,
-        statutcode: 1
+        userToken: token
       });
     } catch (error) {
       res.status(500).send({ message: error.message });

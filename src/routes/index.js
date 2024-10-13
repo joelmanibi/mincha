@@ -2,6 +2,7 @@ const processFavoriteRoutes = require('./announcement/favorite/process-favorite.
 
   resentCustomerRoutes = require('./account/customer/resent-customer-otp.routes');
   createcustomerRoutes = require('./account/customer/create-customer.routes');
+  updateCustomerRoutes = require('./account/customer/update-customer.routes');
   validationCustomerRoutes = require('./account/customer/validate-customer.routes');
   signinCustomerRoutes = require('./account/customer/signin-customer.routes');
   createOwnerRoutes = require('./account/owner/create-owner.routes');
@@ -32,6 +33,7 @@ const processFavoriteRoutes = require('./announcement/favorite/process-favorite.
   module.exports = (app) => {
     resentCustomerRoutes(app);
     createcustomerRoutes(app);
+    updateCustomerRoutes(app);
     validationCustomerRoutes(app);
     signinCustomerRoutes(app);
     createOwnerRoutes(app);
