@@ -19,7 +19,12 @@ exports.updateCustomer = async (req, res) => {
 
   try {
     const updatedUser = await userService.updateUser(userId, updateData);
-    return res.status(200).json({ user: updatedUser });
+    return res.status(200).json({ user: {
+        userFirstname:updatedUser.userFirstname,
+        userLastname:updatedUser.userFirstname,
+        userPhoneNumber:updatedUser.userPhoneNumber,
+        userEmail:updatedUser.userEmail
+    } });
   } catch (error) {
     return res.status(500).send({ message: error.message });
   }
