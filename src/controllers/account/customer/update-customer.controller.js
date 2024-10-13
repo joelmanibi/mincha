@@ -21,7 +21,7 @@ exports.updateCustomer = async (req, res) => {
     const updatedUser = await userService.updateUser(userId, updateData);
     return res.status(200).json({ user: {
         userFirstname:updatedUser.userFirstname,
-        userLastname:updatedUser.userFirstname,
+        userLastname:updatedUser.userLastname,
         userPhoneNumber:updatedUser.userPhoneNumber,
         userEmail:updatedUser.userEmail
     } });
