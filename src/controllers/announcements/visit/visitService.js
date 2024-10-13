@@ -36,6 +36,42 @@ const extractVisitData = (req) => {
     return visit;
   };
 
+  const getAllVisit = async () => {
+    const visit = await Visit.findAll({
+        include : [
+            {
+              model: Announcement,
+              include: [
+                {
+                    model: Property,
+                    include: [
+                       {
+                          model: PropertyType
+                        },
+                        {
+                          model: Ville
+                        },
+                        {
+                          model: PropertyDocType
+                        },
+                        {
+                          model: PropertyLevel
+                        },
+                        {
+                          model: PropertyPhoto
+                        }
+                    ]
+                  },
+                  {
+                    model: AnnouncementType,
+                },
+              ]
+            }
+          ]
+    });
+    return visit;
+  };
+
   const getMyVisit = async (userId) => {
     const visit = await Visit.findAll({
       where : {
@@ -74,8 +110,19 @@ const extractVisitData = (req) => {
     });
     return visit;
   };
+
+  const countAnnounceVisit = async (announceId) => {
+    const visit = await Visit.findAll({
+      where : {
+        propertyAnnouncement: announceId,
+      },
+    });
+    return visit;
+  };
   
   module.exports = {
+    countAnnounceVisit,
+    getAllVisit,
     getMyVisit,
     extractVisitData,
     createVisit,

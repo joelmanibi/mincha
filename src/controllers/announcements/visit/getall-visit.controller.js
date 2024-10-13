@@ -3,9 +3,7 @@ const { getAllVisit } = require('./visitService');
 
 
 exports.getAllVisits = async (req,res) => {
-  
   try {
-
     const visit = await getAllVisit()
     if (visit.length == 0) {
       return res.status(403).send({
@@ -14,8 +12,7 @@ exports.getAllVisits = async (req,res) => {
       });
     };
       res.status(200).json({
-        visit,
-        statutcode: 1
+        visit
        });
   } catch (error) {
     res.status(500).send({ message: error.message });

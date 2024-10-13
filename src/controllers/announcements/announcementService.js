@@ -8,6 +8,7 @@ const PropertyLevel = db.level;
 const Ville = db.ville;
 const Favorite = db.favorite;
 const PropertyPhoto = db.propertyPhoto
+const { countAnnounceVisit } = require('./visit/visitService');
 
 const extractAnnouncementData = (req) => {
   
@@ -75,16 +76,19 @@ const extractAnnouncementData = (req) => {
 
         // Récupérer les favoris de l'utilisateur
         const userFavorites = await getUserFavorites(userId);
-        
         const favoriteIds = userFavorites.map(favorite => favorite.favoriteAnnouncement);
 
-        // Ajouter le champ IsFavorite
-        const announcementsWithFavoriteStatus = announcements.map(announcement => ({
-            ...announcement.toJSON(), // Convertir l'instance Sequelize en objet plain
-            IsFavorite: favoriteIds.includes(announcement.announcementId), // Vérifier si l'annonce est favorite
+        // Utiliser Promise.all pour récupérer les visites de toutes les annonces en parallèle
+        const announcementsWithVisitAndFavorite = await Promise.all(announcements.map(async (announcement) => {
+            const visitCount = await countAnnounceVisit(announcement.announcementId); // Nombre de visites de l'annonce
+            return {
+                ...announcement.toJSON(), // Convertir l'instance Sequelize en objet plain
+                IsFavorite: favoriteIds.includes(announcement.announcementId), // Vérifier si l'annonce est favorite
+                visitCount, // Ajouter le nombre de visites
+            };
         }));
 
-        return announcementsWithFavoriteStatus;
+        return announcementsWithVisitAndFavorite;
     } catch (error) {
         console.error("Error fetching announcements: ", error);
         throw new Error("Unable to fetch announcements");
