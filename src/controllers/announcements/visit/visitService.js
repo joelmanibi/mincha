@@ -117,7 +117,7 @@ const extractVisitData = (req) => {
         propertyAnnouncement: announceId,
       },
     });
-    return visit;
+    return visit.length;
   };
   
   module.exports = {
