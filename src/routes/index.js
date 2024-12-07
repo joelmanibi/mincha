@@ -1,4 +1,3 @@
-const processFavoriteRoutes = require('./announcement/favorite/process-favorite.routes');
 
   resentCustomerRoutes = require('./account/customer/resent-customer-otp.routes');
   createcustomerRoutes = require('./account/customer/create-customer.routes');
@@ -30,6 +29,7 @@ const processFavoriteRoutes = require('./announcement/favorite/process-favorite.
   procesFavoriteRoutes = require('./announcement/favorite/process-favorite.routes');
   getmyFavoriteRoutes = require('./announcement/favorite/getmy-favorite.routes');
   getallAnnouncementTypeRoutes = require('./announcement/announcementType/getAnnouncemetType.route');
+  signinSudoRoutes = require('./account/sudo/signin-sudo.routes');
   module.exports = (app) => {
     resentCustomerRoutes(app);
     createcustomerRoutes(app);
@@ -59,5 +59,6 @@ const processFavoriteRoutes = require('./announcement/favorite/process-favorite.
     procesFavoriteRoutes(app);
     getmyFavoriteRoutes(app);
     getallAnnouncementTypeRoutes(app);
-    getallPropertyTypeRoutes(app)
+    getallPropertyTypeRoutes(app);
+    signinSudoRoutes(app)
   };
