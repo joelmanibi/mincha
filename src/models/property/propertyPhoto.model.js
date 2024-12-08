@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const PropertyPhoto = sequelize.define("propertyPhoto", {
+    const PropertyPhoto = sequelize.define("propertyphoto", {
         propertyPhotoId: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
