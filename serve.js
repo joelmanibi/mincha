@@ -21,7 +21,7 @@ app.use('/static', express.static('assets'));
 require('./src/routes')(app);
 
 const PORT = process.env.PORT || 8000;
-app.listen(PORT, function () {
+app.listen(PORT,'0.0.0.0', function () {
     console.log(`App listening on port ${PORT}`);
     });
 module.exports = app;
