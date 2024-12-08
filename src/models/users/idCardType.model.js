@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const IdCardType = sequelize.define("idCardType", {
+    const IdCardType = sequelize.define("idcardtype", {
         IdCardTypeId: {
         type: Sequelize.INTEGER,
         autoIncrement: true,

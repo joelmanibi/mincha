@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const MaintenanceRequest = sequelize.define("maintenanceRequest", {
+    const MaintenanceRequest = sequelize.define("maintenancerequest", {
         requestId : {
         type: Sequelize.INTEGER,
         autoIncrement: true,

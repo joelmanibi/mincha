@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const RequestStatus = sequelize.define("requestStatus", {
+    const RequestStatus = sequelize.define("requeststatus", {
         requestStatusId: {
         type: Sequelize.INTEGER,
         autoIncrement: true,

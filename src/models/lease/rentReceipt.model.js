@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const RentReceipt = sequelize.define("rentReceipt", {
+    const RentReceipt = sequelize.define("rentreceipt", {
         rentReceiptId: {
         type: Sequelize.INTEGER,
         autoIncrement: true,

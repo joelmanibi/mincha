@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const PropertyDocType = sequelize.define("propertyDocType", {
+    const PropertyDocType = sequelize.define("propertydoctype", {
       propertyDocTypeId: {
         type: Sequelize.INTEGER,
         autoIncrement: true,

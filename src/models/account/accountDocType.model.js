@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const AccountDocType = sequelize.define("accountDocType", {
+    const AccountDocType = sequelize.define("accountdoctype", {
       accountDocTypeId: {
         type: Sequelize.INTEGER,
         autoIncrement: true,

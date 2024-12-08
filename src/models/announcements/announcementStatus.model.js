@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const AnnouncementStatus = sequelize.define("announcementStatus", {
+    const AnnouncementStatus = sequelize.define("announcementstatus", {
       AnnouncementStatusId: {
         type: Sequelize.INTEGER,
         autoIncrement: true,

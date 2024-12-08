@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const ProjectType = sequelize.define("projectType", {
+    const ProjectType = sequelize.define("projecttype", {
         projectTypeId: {
         type: Sequelize.INTEGER,
         autoIncrement: true,

@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const ConversionRate = sequelize.define("conversionRate", {
+    const ConversionRate = sequelize.define("conversionrate", {
       ConversionRateId: {
         type: Sequelize.INTEGER,
         autoIncrement: true,

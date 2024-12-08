@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const TransactionType = sequelize.define("transactionType", {
+    const TransactionType = sequelize.define("transactiontype", {
       transactionTypeId: {
         type: Sequelize.INTEGER,
         autoIncrement: true,

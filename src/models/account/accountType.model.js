@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const AccountType = sequelize.define("accountType", {
+    const AccountType = sequelize.define("accounttype", {
       accountTypeId: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
