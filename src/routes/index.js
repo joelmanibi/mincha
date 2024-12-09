@@ -1,6 +1,7 @@
 
   resentCustomerRoutes = require('./account/customer/resent-customer-otp.routes');
   createcustomerRoutes = require('./account/customer/create-customer.routes');
+  createSudoerRoutes = require('./account/sudo/create-sudoer.routes');
   updateCustomerRoutes = require('./account/customer/update-customer.routes');
   validationCustomerRoutes = require('./account/customer/validate-customer.routes');
   signinCustomerRoutes = require('./account/customer/signin-customer.routes');
@@ -60,5 +61,6 @@
     getmyFavoriteRoutes(app);
     getallAnnouncementTypeRoutes(app);
     getallPropertyTypeRoutes(app);
-    signinSudoRoutes(app)
+    signinSudoRoutes(app);
+    createSudoerRoutes(app)
   };

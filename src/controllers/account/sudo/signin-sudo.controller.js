@@ -6,9 +6,7 @@ const User = db.user;
 const dotenv = require('dotenv');
 
 exports.signinSudo = async (req, res) => {
-  
     try {
-
         const userExist = await User.findOne({
           where: {
              userEmail: req.body.userPhoneOrEmail

@@ -3,7 +3,6 @@ const User = db.user;
 var bcrypt = require("bcryptjs");
 
 const extractCommonUserData = (req) => {
-  
     return {
       userFirstname: req.body.userFirstname,
       userLastname: req.body.userLastname,
@@ -28,7 +27,6 @@ const extractCommonUserData = (req) => {
       userIdCardType: userData.userIdCardType,
       userAccount: userData.userAccount
     });
-  
     return user;
   };
 
