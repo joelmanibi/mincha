@@ -53,7 +53,7 @@ exports.createOwner = async (req, res) => {
     const user = await createUser(userData);
 
     const token = jwt.sign({ userId: user.userId }, process.env.SECRET_CONFIG, {
-      expiresIn: 8640000 // (en s) 100 jours
+      expiresIn: 259200 // (en s) 3 jours
     });
 
     await User.update(
@@ -84,9 +84,8 @@ exports.createOwner = async (req, res) => {
     await sendMail(mailOptions);
 
     res.status(200).json({
-      message: "Bienvenue chez MINCHA",
+      message: "Bienvenue chez MINCHA PRO",
       userToken: token,
-      statutcode: 1,
       userFirstname: user.userFirstname,
       userLastname: user.userLastname,
       userPhoneNumber: user.userPhoneNumber,

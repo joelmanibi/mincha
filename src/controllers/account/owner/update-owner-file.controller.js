@@ -105,7 +105,6 @@ exports.updateFile = async (req, res) => {
 
     res.status(200).json({
       message: "Mise a jour effectué",
-      statutcode: 1
     });
   } catch (error) {
     res.status(500).send({ message: error.message });

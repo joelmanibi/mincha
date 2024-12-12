@@ -13,6 +13,9 @@ module.exports = function(app) {
   });
   app.post(
     "/api/account/create-owner",
+    [
+      verifySignUp.checkDuplicateUser,
+    ],
     controller.createOwner
   );
 };

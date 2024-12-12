@@ -8,7 +8,7 @@ const extractCommonUserData = (req) => {
       userLastname: req.body.userLastname,
       userPhoneNumber: req.body.userPhoneNumber,
       userEmail: req.body.userEmail,
-      userCountry: req.body.userCountry,
+      userCountry: 225,
       userPassword: bcrypt.hashSync(req.body.userPassword, 8),
       userGender: req.body.userGender,
       userIsActive: 0,

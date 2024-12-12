@@ -74,6 +74,7 @@ exports.signinOwner = async (req, res) => {
             accountId: userExist.userAccount
           }
         });
+        
       
       res.status(200).json({
         userToken: userExist.userToken,

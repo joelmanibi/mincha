@@ -23,11 +23,11 @@ exports.validateOwner = async (req, res) => {
         }
         
         const user_token = jwt.sign({ userId: user.userId }, config.secret, {
-            expiresIn: 8640000 // 100 jours
+            expiresIn: 2592000 // 30 jours
           });
 
         const account_token = jwt.sign({ userId: user.userAccount }, config.secret, {
-          expiresIn: 8640000 // 100 jours
+          expiresIn: 2592000 // 30 jours
         });
         
       await User.update(
