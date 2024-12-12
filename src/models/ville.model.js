@@ -8,6 +8,11 @@ module.exports = (sequelize, Sequelize) => {
       villeName: {
         type: Sequelize.STRING,
       }
+    },
+    {
+        timestamps: false,
+        // If don't want updatedAt
+        updatedAt: false,
     }
   );
       return Ville;
