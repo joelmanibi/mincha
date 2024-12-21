@@ -3,13 +3,14 @@ const jwt = require("jsonwebtoken");
 const db = require("../../../models");
 const User = db.user;
 const { extractCommonAccountData, createAccount } = require('../accountService');
-const { extractCommonUserData, createUser, checkDuplicateUser } = require('../userService');
+const { extractCommonUserData, createUser, constcheckDuplicateUser } = require('../userService');
 const { createWallet } = require('../../wallet/walletService');
 const { sendMail } = require('../../mailService');
 const uploadProfile = require("../../../../helpers/user/uploadFileService");
 const util = require('util');
 
 exports.createOwner = async (req, res) => {
+
   const upload = util.promisify(uploadProfile.fields([
     { name: 'profile_file', maxCount: 1 },
     { name: 'idCardFront_file', maxCount: 1 },
@@ -19,16 +20,17 @@ exports.createOwner = async (req, res) => {
   ]));
 
   try {
-    await upload(req);
-    
-   const CheckDoubleUser = await checkDuplicateUser(req);
+    await upload(req, res);
 
-   if (CheckDoubleUser.userId) {
-    return res.status(400).json({
-      message: "Échec ! Numéro de téléphone ou Email déjà utilisé !"
-    });
-  }
     const commonAccountData = extractCommonAccountData(req);
+    const checkDuplicatUser = await constcheckDuplicateUser(req);
+
+
+    if(checkDuplicatUser !== null){
+     return res.status(200).json({
+       message: "Échec ! Numéro de téléphone ou Email déjà utilisé !"
+      });
+    } 
 
     const accountData = {
       ...commonAccountData,
@@ -39,6 +41,7 @@ exports.createOwner = async (req, res) => {
     };
 
     const account = await createAccount(accountData);
+
     const walletData = {
       walletUser: account.accountId
     };

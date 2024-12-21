@@ -1,6 +1,7 @@
 const db = require("../../models");
 const User = db.user;
 var bcrypt = require("bcryptjs");
+const { Op } = require('sequelize');
 
 const extractCommonUserData = (req) => {
     return {
@@ -14,22 +15,25 @@ const extractCommonUserData = (req) => {
       userIsActive: 0,
     };
     
+    
   };
 
-  const checkDuplicateUser = async (req) => {
-    const userEmailLowerCase = req.body.userEmail ? req.body.userEmail.toLowerCase() : null;
-    const userPhoneNumber = req.body.userPhoneNumber || null;
+  const constcheckDuplicateUser = async (req) => {
+    const userEmailLowerCase = req.body.userEmail.toLowerCase();
+  const user =   await User.findOne({
+      where: {
+        [Op.or]: [
+          { userPhoneNumber: req.body.userPhoneNumber },
+          { userEmail: userEmailLowerCase }
+        ]
+      }
+    })
 
-  const CheckDoubleUser = await  User.findOne({
-    where: {
-      [Op.or]: [
-        { userPhoneNumber: userPhoneNumber },
-        { userEmail: userEmailLowerCase }
-      ]
-    }
-  })
- return CheckDoubleUser
+    return user
   };
+
+
+ 
   // Fonction pour créer un utilisateur
   const createUser = async (userData) => {
     const user = await User.create({
@@ -65,5 +69,5 @@ const extractCommonUserData = (req) => {
     updateUser,
     extractCommonUserData,
     createUser,
-    checkDuplicateUser
+    constcheckDuplicateUser
   };
