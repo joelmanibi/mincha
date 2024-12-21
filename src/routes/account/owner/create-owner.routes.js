@@ -14,7 +14,7 @@ module.exports = function(app) {
   app.post(
     "/api/account/create-owner",
     [
-      verifySignUp.checkDuplicateUser,
+      verifySignUp.checkDuplicateAccount,
     ],
     controller.createOwner
   );
