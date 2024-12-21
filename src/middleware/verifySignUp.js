@@ -7,6 +7,8 @@ const { Op } = require('sequelize');
 checkDuplicateUser = (req, res, next) => {
   const userEmailLowerCase = req.body.userEmail ? req.body.userEmail.toLowerCase() : null;
   const userPhoneNumber = req.body.userPhoneNumber || null;
+console.log(userEmailLowerCase);
+console.log(userPhoneNumber);
 
   if (!userEmailLowerCase && !userPhoneNumber) {
     return res.status(400).send({
