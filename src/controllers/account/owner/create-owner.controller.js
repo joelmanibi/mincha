@@ -20,7 +20,7 @@ exports.createOwner = async (req, res) => {
 
   try {
     await upload(req, res);
-
+    await checkDuplicateUser(req, res, next);
     const commonAccountData = extractCommonAccountData(req);
 
     const accountData = {

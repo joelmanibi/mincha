@@ -15,6 +15,37 @@ const extractCommonUserData = (req) => {
     };
     
   };
+
+  const checkDuplicateUser = (req, res, next) => {
+    const userEmailLowerCase = req.body.userEmail ? req.body.userEmail.toLowerCase() : null;
+  const userPhoneNumber = req.body.userPhoneNumber || null;
+
+
+  if (!userEmailLowerCase && !userPhoneNumber) {
+    return res.status(400).send({
+      message: "Échec ! L'email ou le numéro de téléphone est requis."
+    });
+  }
+
+  User.findOne({
+    where: {
+      [Op.or]: [
+        { userPhoneNumber: userPhoneNumber },
+        { userEmail: userEmailLowerCase }
+      ]
+    }
+  }).then(user => {
+    if (user) {
+      return res.status(400).send({
+        message: "Échec ! Numéro de téléphone ou Email déjà utilisé !"
+      });
+    }
+    next(); // Passer au middleware suivant si pas de doublons
+  }).catch(err => {
+    res.status(500).send({ message: "Erreur lors de la vérification de l'utilisateur." });
+  });
+    
+  };
   // Fonction pour créer un utilisateur
   const createUser = async (userData) => {
     const user = await User.create({
@@ -50,4 +81,5 @@ const extractCommonUserData = (req) => {
     updateUser,
     extractCommonUserData,
     createUser,
+    checkDuplicateUser
   };

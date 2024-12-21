@@ -13,10 +13,7 @@ module.exports = function(app) {
   });
   app.post(
     "/api/account/create-owner",
-    upload.array(),
-    [
-      verifySignUp.checkDuplicateUser,
-    ],
+    
     controller.createOwner
   );
 };
