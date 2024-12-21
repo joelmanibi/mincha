@@ -16,16 +16,9 @@ const extractCommonUserData = (req) => {
     
   };
 
-  const checkDuplicateUser = async (req, res) => {
+  const checkDuplicateUser = async (req) => {
     const userEmailLowerCase = req.body.userEmail ? req.body.userEmail.toLowerCase() : null;
-  const userPhoneNumber = req.body.userPhoneNumber || null;
-
-
-  if (!userEmailLowerCase && !userPhoneNumber) {
-    return res.status(400).send({
-      message: "Échec ! L'email ou le numéro de téléphone est requis."
-    });
-  }
+    const userPhoneNumber = req.body.userPhoneNumber || null;
 
   const CheckDoubleUser = await  User.findOne({
     where: {
@@ -34,17 +27,8 @@ const extractCommonUserData = (req) => {
         { userEmail: userEmailLowerCase }
       ]
     }
-  }).then(user => {
-    if (user) {
-      return res.status(400).send({
-        message: "Échec ! Numéro de téléphone ou Email déjà utilisé !"
-      });
-    }
-    return CheckDoubleUser;
-  }).catch(err => {
-    res.status(500).send({ message: "Erreur lors de la vérification de l'utilisateur." });
-  });
-    
+  })
+ return CheckDoubleUser
   };
   // Fonction pour créer un utilisateur
   const createUser = async (userData) => {
