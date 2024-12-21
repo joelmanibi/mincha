@@ -20,10 +20,11 @@ exports.createOwner = async (req, res) => {
 
   try {
     await upload(req);
-   const CheckDoubleUser = await checkDuplicateUser(req, res);
+    
+   const CheckDoubleUser = await checkDuplicateUser(req);
 
-   if (CheckDoubleUser) {
-    return res.status(400).send({
+   if (CheckDoubleUser.userId) {
+    return res.status(400).json({
       message: "Échec ! Numéro de téléphone ou Email déjà utilisé !"
     });
   }
