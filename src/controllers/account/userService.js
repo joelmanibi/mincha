@@ -16,7 +16,7 @@ const extractCommonUserData = (req) => {
     
   };
 
-  const checkDuplicateUser = (req, res, next) => {
+  const checkDuplicateUser = async (req, res) => {
     const userEmailLowerCase = req.body.userEmail ? req.body.userEmail.toLowerCase() : null;
   const userPhoneNumber = req.body.userPhoneNumber || null;
 
@@ -27,7 +27,7 @@ const extractCommonUserData = (req) => {
     });
   }
 
-  User.findOne({
+  const CheckDoubleUser = await  User.findOne({
     where: {
       [Op.or]: [
         { userPhoneNumber: userPhoneNumber },
@@ -40,7 +40,7 @@ const extractCommonUserData = (req) => {
         message: "Échec ! Numéro de téléphone ou Email déjà utilisé !"
       });
     }
-    next(); // Passer au middleware suivant si pas de doublons
+    return CheckDoubleUser;
   }).catch(err => {
     res.status(500).send({ message: "Erreur lors de la vérification de l'utilisateur." });
   });
