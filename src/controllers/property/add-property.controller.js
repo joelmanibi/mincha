@@ -16,7 +16,6 @@ exports.addProperty = async (req, res) => {
   if (!accountIsActived) {
     return res.status(403).send({
       message: "Vous n'etes pas authorisé a éffectuer cette requete, merci de contacter l'administrateur pour support",
-      statutcode: 0
     });
   };
     const upload = util.promisify(uploadProfile.fields([

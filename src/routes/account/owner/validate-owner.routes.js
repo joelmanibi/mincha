@@ -1,4 +1,4 @@
-const { verifySignUp } = require("../../../middleware");
+const { authJwt } = require("../../../middleware");
 const controller = require("../../../controllers/account/owner/validate-owner.controller");
 var multer = require('multer');
 var upload = multer();
@@ -15,7 +15,7 @@ module.exports = function(app) {
   app.post(
     "/api/account/validate-owner",
     upload.array(),
-  //  [authJwt.verifyUserToken],
+    [authJwt.verifyAccountToken],
     controller.validateOwner
   );
 };

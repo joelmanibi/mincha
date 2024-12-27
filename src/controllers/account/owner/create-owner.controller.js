@@ -27,7 +27,7 @@ exports.createOwner = async (req, res) => {
 
 
     if(checkDuplicatUser !== null){
-     return res.status(200).json({
+     return res.status(401).json({
        message: "Échec ! Numéro de téléphone ou Email déjà utilisé !"
       });
     } 

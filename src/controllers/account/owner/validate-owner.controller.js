@@ -76,8 +76,7 @@ exports.validateOwner = async (req, res) => {
 
     await sendMail(mailOptions);
       res.status(200).json({
-        message : "Demande traité avec succes",
-        statutcode: 1
+        message : "Demande traité avec succes"
       });
     } catch (error) {
       res.status(500).send({ message: error.message });
