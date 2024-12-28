@@ -73,7 +73,7 @@ exports.validateOwner = async (req, res) => {
       \n\n
       Best regards,\n L'équipe MINCHA`
     };
-
+    
     await sendMail(mailOptions);
       res.status(200).json({
         message : "Demande traité avec succes"

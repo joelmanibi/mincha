@@ -31,6 +31,7 @@
   getmyFavoriteRoutes = require('./announcement/favorite/getmy-favorite.routes');
   getallAnnouncementTypeRoutes = require('./announcement/announcementType/getAnnouncemetType.route');
   signinSudoRoutes = require('./account/sudo/signin-sudo.routes');
+  getAccountDocType = require('./account/account-doc-type.routes')
   module.exports = (app) => {
     resentCustomerRoutes(app);
     createcustomerRoutes(app);
@@ -62,5 +63,7 @@
     getallAnnouncementTypeRoutes(app);
     getallPropertyTypeRoutes(app);
     signinSudoRoutes(app);
-    createSudoerRoutes(app)
+    createSudoerRoutes(app);
+    getAccountDocType(app)
+    
   };
