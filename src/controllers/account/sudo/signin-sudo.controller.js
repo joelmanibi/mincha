@@ -3,7 +3,7 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 const db = require("../../../models");
 const User = db.user;
-const dotenv = require('dotenv');
+const { Op } = require('sequelize');
 
 exports.signinSudo = async (req, res) => {
     try {
@@ -73,8 +73,7 @@ exports.signinSudo = async (req, res) => {
         userFirstname: userExist.userFirstname,
         userLastname: userExist.userLastname,
         userPhoneNumber: userExist.userPhoneNumber,
-        userEmail: userExist.userEmail,
-        userRoleID:userExist.userRoleID
+        userEmail: userExist.userEmail
       });
     } catch (error) {
       res.status(500).send({ message: error.message });
