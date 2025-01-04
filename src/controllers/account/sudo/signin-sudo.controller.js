@@ -9,7 +9,10 @@ exports.signinSudo = async (req, res) => {
     try {
         const userExist = await User.findOne({
           where: {
-             userEmail: req.body.userPhoneOrEmail
+            [Op.or]: [
+              { userEmail: req.body.userPhoneOrEmail },
+              { userPhoneNumber: req.body.userPhoneOrEmail }
+            ]
           }
         });
 
@@ -28,7 +31,7 @@ exports.signinSudo = async (req, res) => {
   
           if (!usersIsudo) {
             return res.status(403).send({
-              message: "Vous n'etes pas autorisé a vous authentifier"
+              message: "Vous n'etes pas autorisé a vous authentifier, vous n'etes pas Admin"
             });
           };
 
