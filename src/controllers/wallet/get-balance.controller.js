@@ -18,14 +18,14 @@ exports.getBalance = async (req, res) => {
 
           if (!wallet) {
             return res.status(401).json({
-              message: "Aucun compte ou portefeuil trouvé",
-              statutcode: 0
+              message: "Aucun compte ou portefeuil trouvé"
             });
           }
+
+          
       
       res.status(200).json({
-       balance:wallet.balance,
-        statutcode: 1
+       balance:wallet.balance
       });
     } catch (error) {
       res.status(500).send({ message: error.message });

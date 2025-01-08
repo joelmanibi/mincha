@@ -11,6 +11,7 @@
   changePasswordRoutes = require('./account/change-password.routes');
   signinOwnerRoutes = require('./account/owner/signin-owner.routes');
   getBalanceRoutes = require('./wallet/get-balance.routes');
+  substBalanceRoutes = require('./wallet/subst-balance.routes');
   addPropertyRoutes = require('./property/add-property.routes');
   updateUpdateRoutes = require('./property/update-property.routes');
   deletePropertyRoutes = require('./property/delete-property.routes');
@@ -44,6 +45,8 @@
     changePasswordRoutes(app);
     signinOwnerRoutes(app);
     getBalanceRoutes(app);
+
+    substBalanceRoutes(app);
     addPropertyRoutes(app);
     updateUpdateRoutes(app);
     deletePropertyRoutes(app);
