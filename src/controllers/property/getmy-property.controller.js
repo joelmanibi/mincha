@@ -4,6 +4,7 @@ const PropertyType = db.propertyType;
 const PropertyDocType = db.propertyDocType;
 const PropertyLevel = db.level;
 const User = db.user;
+const Ville = db.ville
 const Property = db.property;
 const util = require('util');
 
@@ -30,6 +31,9 @@ exports.getMyProperty = async (req,res) => {
           },
           {
             model: PropertyLevel
+          },
+          {
+            model: Ville
           }
         ]
       });
