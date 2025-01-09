@@ -14,7 +14,7 @@ module.exports = function(app) {
   });
   app.get(
     "/api/property/getmy-property",
-    [authJwt.verifyAccountToken],
+    [authJwt.verifyUserToken],
  //   upload.array(),
     controller.getMyProperty
   );

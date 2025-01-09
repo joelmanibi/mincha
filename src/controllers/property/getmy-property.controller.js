@@ -3,16 +3,22 @@ const PropertyPhoto = db.propertyPhoto;
 const PropertyType = db.propertyType;
 const PropertyDocType = db.propertyDocType;
 const PropertyLevel = db.level;
+const User = db.user;
 const Property = db.property;
 const util = require('util');
 
 exports.getMyProperty = async (req,res) => {
   
     try {
+      const user = await User.findOne({
+        where: {
+            userId: req.userId,
+        }
+      });
 
       const property = await Property.findAll({
         where: {
-          ownerId: req.accountId
+          ownerId: user.userAccount,
         },
         
         include : [
@@ -29,14 +35,12 @@ exports.getMyProperty = async (req,res) => {
       });
       if (property.length == 0) {
         return res.status(403).send({
-          message: "Aucune proprieté trouvé",
-          statutcode: 0
+          message: "Aucune proprieté trouvé"
         });
       };
         
         res.status(200).json({
-          property,
-          statutcode: 1
+          property
          });
         
     } catch (error) {
