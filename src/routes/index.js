@@ -9,6 +9,7 @@
   validateOwnerRoutes = require('./account/owner/validate-owner.routes');
   updateOwnerRoutes = require('./account/owner/update-owner-file.routes');
   changePasswordRoutes = require('./account/change-password.routes');
+  getallUserRoutes = require('./user/getall-users.routes');
   signinOwnerRoutes = require('./account/owner/signin-owner.routes');
   getBalanceRoutes = require('./wallet/get-balance.routes');
   substBalanceRoutes = require('./wallet/subst-balance.routes');
@@ -34,6 +35,7 @@
   signinSudoRoutes = require('./account/sudo/signin-sudo.routes');
   getAccountDocType = require('./account/account-doc-type.routes')
   module.exports = (app) => {
+    getallUserRoutes(app);
     resentCustomerRoutes(app);
     createcustomerRoutes(app);
     updateCustomerRoutes(app);
