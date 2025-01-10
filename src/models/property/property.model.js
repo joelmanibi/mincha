@@ -6,16 +6,16 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true
       },
       ownerId : {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       propertyTypeID : {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       propertyLocation : {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       propertyPrice: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       propertyArea: {
         type: Sequelize.INTEGER,
@@ -25,36 +25,36 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: 0
       },
       livingRoom: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       bedroom :{
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       garagePlace :{
         type: Sequelize.INTEGER,
         defaultValue: 0
       },
       bathroom :{
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       propertyLevel : {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       propertyApproved : {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
       },
       approvalComment : {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       approvalDate : {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       approverUser: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       propertyDocTypeID: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       propertyDoc: {
         type: Sequelize.STRING

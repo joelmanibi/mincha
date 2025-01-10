@@ -2,6 +2,7 @@ const db = require("../../../models");
 const User = db.user;
 const UserType = db.userType;
 const UserRole = db.userRole;
+const Account = db.account
 
 exports.getAllUser = async (req,res) => {
 
@@ -21,7 +22,7 @@ exports.getAllUser = async (req,res) => {
     try {
       const user = await User.findAll({
         attributes: {
-          exclude: ['userPassword', 'userToken', 'CodeOTP', 'userIdCardFront', 'userIdCardBack'],
+          exclude: ['userPassword', 'userToken', 'CodeOTP'],
       },
       include: [
         {
@@ -29,6 +30,12 @@ exports.getAllUser = async (req,res) => {
         },
         {
             model: UserType,
+        },
+        {
+          model:Account,
+          attributes: {
+            exclude: ['accountToken'],
+        },
         }
     ],
       });
