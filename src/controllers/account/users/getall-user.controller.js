@@ -2,7 +2,8 @@ const db = require("../../../models");
 const User = db.user;
 const UserType = db.userType;
 const UserRole = db.userRole;
-const Account = db.account
+const Account = db.account;
+const AccountType = db.accountType
 
 exports.getAllUser = async (req,res) => {
 
@@ -33,9 +34,15 @@ exports.getAllUser = async (req,res) => {
         },
         {
           model:Account,
+          include:[
+            {
+              model:AccountType
+            }
+          ],
           attributes: {
             exclude: ['accountToken'],
         },
+        
         }
     ],
       });
