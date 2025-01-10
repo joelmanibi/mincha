@@ -15,7 +15,7 @@ module.exports = function(app) {
   app.post(
     "/api/account/validate-owner",
     upload.array(),
-    [authJwt.verifyAccountToken],
+    [authJwt.verifyUserToken],
     controller.validateOwner
   );
 };

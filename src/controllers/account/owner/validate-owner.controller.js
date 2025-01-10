@@ -9,6 +9,19 @@ const Transaction = db.transaction;
 
 exports.validateOwner = async (req, res) => {
 
+  const requesterIsAdmin = await User.findOne({
+    where: {
+      userId: req.userId,
+      userRoleID: 1,
+      userTypeID: 5
+    }
+  });
+  if (!requesterIsAdmin) {
+    return res.status(403).send({
+      message: "Vous n'etes pas authorisé a éffectuer cette requete, merci de contacter l'administrateur pour support",
+    });
+  };
+
   if (req.body.accountIsApproved == 1) {
     try {
         const user = await User.findOne({
@@ -57,7 +70,8 @@ exports.validateOwner = async (req, res) => {
       await Account.update(
         { accountToken: account_token,
           accountIsApproved: req.body.accountIsApproved,
-          validationComment: req.body.validationComment ? req.body.validationComment : null
+          validationComment: req.body.validationComment ? req.body.validationComment : null,
+          accountTypeID:req.body.accountTypeID
         },
         { where: { accountId : user.userAccount } }
       );
