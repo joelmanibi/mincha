@@ -18,19 +18,35 @@ const extractCommonUserData = (req) => {
     
   };
 
-  const constcheckDuplicateUser = async (req) => {
-    const userEmailLowerCase = req.body.userEmail.toLowerCase();
-  const user =   await User.findOne({
-      where: {
-        [Op.or]: [
-          { userPhoneNumber: req.body.userPhoneNumber },
-          { userEmail: userEmailLowerCase }
-        ]
-      }
-    })
+  // Utilitaires
+/**
+ * Trouver un utilisateur par sonID
+ * @param {string} userId - Id de l'utilisateur a trouver
+ * @returns {Promise<Object|null>} Utilisateur trouvé ou null
+ */
+const findUserByuserId = async (userId) => {
+  return await User.findOne({
+    where: {
+       userId: userId 
+    }
+  });
+};
 
-    return user
-  };
+  // Utilitaires
+/**
+ * Trouver un super Admin par son Id
+ * @param {string} userId - Id de l'utilisateur a trouver
+ * @returns {Promise<Object|null>} Utilisateur trouvé ou null
+ */
+const findUserSudoByuserId = async (userId) => {
+  return await User.findOne({
+    where: {
+      userId: userId,
+      userRoleID: 1,
+      userTypeID: 5
+    }
+  });
+};
 
 
  
@@ -69,5 +85,6 @@ const extractCommonUserData = (req) => {
     updateUser,
     extractCommonUserData,
     createUser,
-    constcheckDuplicateUser
+    findUserByuserId,
+    findUserSudoByuserId
   };

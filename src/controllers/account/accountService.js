@@ -23,8 +23,23 @@ const extractCommonAccountData = (req) => {
   
     return account;
   };
+
+    // Utilitaires
+/**
+ * Trouver un compte par sonID
+ * @param {string} accountId - Id du compte a trouver
+ * @returns {Promise<Object|null>} Compte trouvé ou null
+ */
+const findAccountByuserId = async (accountId) => {
+  return await Account.findOne({
+    where: {
+       accountId: accountId 
+    }
+  });
+};
   
   module.exports = {
     extractCommonAccountData,
     createAccount,
+    findAccountByuserId
   };

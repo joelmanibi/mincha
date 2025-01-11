@@ -39,7 +39,6 @@ exports.deleteProperty = async (req, res) => {
       if (!deletProperty) {
         return res.status(403).send({
           message: "échec de la suppression de la proprieté",
-          statutcode: 0
         });
       };
       

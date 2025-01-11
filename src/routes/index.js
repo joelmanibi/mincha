@@ -10,6 +10,7 @@
   updateOwnerRoutes = require('./account/owner/update-owner-file.routes');
   changePasswordRoutes = require('./account/change-password.routes');
   getallUserRoutes = require('./user/getall-users.routes');
+  deleteUserRoutes = require('./user/delete-user.routes');
   signinOwnerRoutes = require('./account/owner/signin-owner.routes');
   getBalanceRoutes = require('./wallet/get-balance.routes');
   substBalanceRoutes = require('./wallet/subst-balance.routes');
@@ -47,7 +48,7 @@
     changePasswordRoutes(app);
     signinOwnerRoutes(app);
     getBalanceRoutes(app);
-
+    deleteUserRoutes(app);
     substBalanceRoutes(app);
     addPropertyRoutes(app);
     updateUpdateRoutes(app);
@@ -70,5 +71,4 @@
     signinSudoRoutes(app);
     createSudoerRoutes(app);
     getAccountDocType(app)
-    
   };
