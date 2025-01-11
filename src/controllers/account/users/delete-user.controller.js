@@ -29,10 +29,17 @@ exports.deleteUser = async (req, res) => {
       `assets/account/profile_file/${userExist.userProfilePhoto}`
     ];
 
+    
+
     for (const filePath of filesToDelete) {
-      const success = await deleteFile(filePath);
-      if (!success) {
-        throw new Error(`Erreur lors de la suppression du fichier : ${filePath}`);
+      if (!filePath.includes('null')) {
+        try {
+          await safeDeleteFile(filePath);
+        } catch (err) {
+          console.error(`Erreur lors de la suppression de ${filePath} :`, err.message);
+        }
+      } else {
+        console.warn(`Fichier manquant pour le chemin : ${filePath}`);
       }
     }
 
