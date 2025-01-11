@@ -34,7 +34,7 @@ exports.deleteUser = async (req, res) => {
     for (const filePath of filesToDelete) {
       if (!filePath.includes('null')) {
         try {
-          await safeDeleteFile(filePath);
+          await deleteFile(filePath);
         } catch (err) {
           console.error(`Erreur lors de la suppression de ${filePath} :`, err.message);
         }
