@@ -15,7 +15,20 @@ const extractCommonUserData = (req) => {
       userIsActive: 0,
     };
     
-    
+  };
+
+  const checkDuplicateUser = async (req) => {
+    const userEmailLowerCase = req.body.userEmail.toLowerCase();
+  const user =   await User.findOne({
+      where: {
+        [Op.or]: [
+          { userPhoneNumber: req.body.userPhoneNumber },
+          { userEmail: userEmailLowerCase }
+        ]
+      }
+    })
+
+    return user
   };
 
   // Utilitaires
@@ -86,5 +99,6 @@ const findUserSudoByuserId = async (userId) => {
     extractCommonUserData,
     createUser,
     findUserByuserId,
-    findUserSudoByuserId
+    findUserSudoByuserId,
+    checkDuplicateUser
   };
