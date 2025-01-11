@@ -22,14 +22,15 @@ exports.createOwner = async (req, res) => {
   try {
     await upload(req, res);
 
+    const commonAccountData = extractCommonAccountData(req);
     const checkDuplicatUser = await checkDuplicateUser(req);
+
 
     if(checkDuplicatUser !== null){
      return res.status(401).json({
        message: "Échec ! Numéro de téléphone ou Email déjà utilisé !"
       });
     } 
-    
 
     const accountData = {
       ...commonAccountData,
