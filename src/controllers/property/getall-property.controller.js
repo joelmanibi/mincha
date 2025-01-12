@@ -3,6 +3,8 @@ const PropertyType = db.propertyType;
 const PropertyDocType = db.propertyDocType;
 const PropertyLevel = db.level;
 const Property = db.property;
+const User = db.user;
+const Account = db.account
 const util = require('util');
 
 exports.getAllProperty = async (req,res) => {
@@ -20,19 +22,24 @@ exports.getAllProperty = async (req,res) => {
           },
           {
             model: PropertyLevel
-          }
+          },
+          {
+            model:User
+          },
+          {
+            model:Account
+          },
+
         ]
       });
       if (property.length == 0) {
         return res.status(403).send({
-          message: "Aucune proprieté trouvé",
-          statutcode: 0
+          message: "Aucune proprieté trouvé"
         });
       };
         
         res.status(200).json({
-          property,
-          statutcode: 1
+          property
          });
         
     } catch (error) {
