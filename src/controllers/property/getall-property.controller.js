@@ -27,7 +27,15 @@ exports.getAllProperty = async (req,res) => {
             model:User
           },
           {
-            model:Account
+            model:Account,
+            include:[
+              {
+                model:AccountType
+              }
+            ],
+            attributes: {
+              exclude: ['accountToken'],
+          },
           }
 
         ]
