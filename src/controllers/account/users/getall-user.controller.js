@@ -4,21 +4,16 @@ const UserType = db.userType;
 const UserRole = db.userRole;
 const Account = db.account;
 const AccountType = db.accountType
+const { findUserSudoByuserId } = require('../userService');
 
 exports.getAllUser = async (req,res) => {
 
-  const requesterIsAdmin = await User.findOne({
-    where: {
-      userId: req.userId,
-      userRoleID: 1,
-      userTypeID: 5
+  const requesterIsAdmin = await findUserSudoByuserId(req.userId);
+    if (!requesterIsAdmin) {
+      return res.status(403).send({
+        message: "Vous n'êtes pas autorisé à effectuer cette requête. Contactez un administrateur.",
+      });
     }
-  });
-  if (!requesterIsAdmin) {
-    return res.status(403).send({
-      message: "Vous n'etes pas authorisé a éffectuer cette requete, merci de contacter l'administrateur pour support",
-    });
-  };
   
     try {
       const user = await User.findAll({

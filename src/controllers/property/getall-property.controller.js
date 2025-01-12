@@ -6,9 +6,16 @@ const Property = db.property;
 const User = db.user;
 const AccountType = db.accountType
 const Account = db.account
-const util = require('util');
+const { findUserSudoByuserId } = require('../account/userService');
 
 exports.getAllProperty = async (req,res) => {
+
+  const requesterIsAdmin = await findUserSudoByuserId(req.userId);
+    if (!requesterIsAdmin) {
+      return res.status(403).send({
+        message: "Vous n'êtes pas autorisé à effectuer cette requête. Contactez un administrateur.",
+      });
+    }
   
     try {
 
