@@ -1,14 +1,22 @@
 require('dotenv').config(); 
-const { extractCommonUserData, createUser } = require('../userService');
+const { extractCommonUserData, createUser, findUserSudoByuserId } = require('../userService');
 const { sendMail } = require('../../mailService');
 
 exports.createSudoer = async (req, res) => {
+
     try {
+
+      const requesterIsAdmin = await findUserSudoByuserId(req.userId);
+    if (!requesterIsAdmin) {
+      return res.status(403).send({
+        message: "Vous n'êtes pas autorisé à effectuer cette requête. Contactez un administrateur.",
+      });
+    }
         const commonData = extractCommonUserData(req);
         const userData = {
             ...commonData,
             userAccount: null,
-            userRoleID: 1,
+            userRoleID: req.body.userRoleID,
             userTypeID: 5,
             userProfilePhoto: null,
             userIdCardFront: null,
