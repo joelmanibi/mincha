@@ -4,6 +4,7 @@ const PropertyDocType = db.propertyDocType;
 const PropertyLevel = db.level;
 const Property = db.property;
 const User = db.user;
+const AccountType = db.accountType
 const Account = db.account
 const util = require('util');
 
