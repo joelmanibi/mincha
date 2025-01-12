@@ -28,7 +28,7 @@ exports.getAllProperty = async (req,res) => {
           },
           {
             model:Account
-          },
+          }
 
         ]
       });

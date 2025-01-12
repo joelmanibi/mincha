@@ -55,6 +55,7 @@
     deletePropertyRoutes(app);
     getPropertyphotoRoutes(app);
     getmyPropertyRoutes(app);
+    getallPropertyRoutes(app);
     updatePropertyRoutes(app);
     addAnnouncementRoutes(app);
     updateAnnouncementRoutes(app);
