@@ -15,6 +15,7 @@
   getBalanceRoutes = require('./wallet/get-balance.routes');
   substBalanceRoutes = require('./wallet/subst-balance.routes');
   addPropertyRoutes = require('./property/add-property.routes');
+  addPropertyBySudoRoutes = require('./property/add-propertyBySudo.routes');
   updateUpdateRoutes = require('./property/update-property.routes');
   deletePropertyRoutes = require('./property/delete-property.routes');
   getallPropertyRoutes = require('./property/getall-property.routes');
@@ -34,7 +35,10 @@
   getmyFavoriteRoutes = require('./announcement/favorite/getmy-favorite.routes');
   getallAnnouncementTypeRoutes = require('./announcement/announcementType/getAnnouncemetType.route');
   signinSudoRoutes = require('./account/sudo/signin-sudo.routes');
-  getAccountDocType = require('./account/account-doc-type.routes')
+  getAccountDocType = require('./account/account-doc-type.routes');
+  getAllAccount = require('./account/get-all-account.routes');
+  getAllCity = require('./get-all-city.routes');
+  getAllLevel = require('./property/getall-level.routes');
   module.exports = (app) => {
     getallUserRoutes(app);
     resentCustomerRoutes(app);
@@ -51,6 +55,10 @@
     deleteUserRoutes(app);
     substBalanceRoutes(app);
     addPropertyRoutes(app);
+    addPropertyBySudoRoutes(app);
+    getAllAccount(app);
+    getAllCity(app);
+    getAllLevel(app);
     updateUpdateRoutes(app);
     deletePropertyRoutes(app);
     getPropertyphotoRoutes(app);
