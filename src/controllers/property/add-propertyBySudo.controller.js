@@ -15,24 +15,28 @@ exports.addPropertyBySudo = async (req, res) => {
       });
     }
 
-  const accountIsActived = await Account.findOne({
-    where: {
-      accountIsApproved: 1,
-      accountIsActive: 1,
-      accountId: req.body.accountId
-    }
-  });
-  if (!accountIsActived) {
-    return res.status(403).send({
-      message: "le compte choisi n'est pas autorié a ajouter un bien il est inactive ou invalide",
-    });
-  };
+ 
     const upload = util.promisify(uploadProfile.fields([
         { name: 'property_photo', maxCount: 10 },
         { name: 'propertyDoc', maxCount: 1 }
       ]));
     try {
         await upload(req, res);
+
+        const accountIsActived = await Account.findOne({
+          where: {
+            accountIsApproved: 1,
+            accountIsActive: 1,
+            accountId: req.body.accountId
+          }
+        });
+        if (!accountIsActived) {
+          return res.status(403).send({
+            message: "le compte choisi n'est pas autorié a ajouter un bien il est inactive ou invalide",
+          });
+        };
+
+        
         const propertyData = extractPropertyData(req);
         const fullPropertyData = {
           ...propertyData,
