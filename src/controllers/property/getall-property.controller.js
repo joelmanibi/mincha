@@ -4,6 +4,7 @@ const PropertyDocType = db.propertyDocType;
 const PropertyLevel = db.level;
 const Property = db.property;
 const User = db.user;
+const Ville = db.ville;
 const AccountType = db.accountType
 const Account = db.account
 const { findUserSudoByuserId } = require('../account/userService');
@@ -30,6 +31,9 @@ exports.getAllProperty = async (req,res) => {
           },
           {
             model: PropertyLevel
+          },
+          {
+            model: Ville
           },
           {
             model:User
