@@ -7,6 +7,7 @@
   signinCustomerRoutes = require('./account/customer/signin-customer.routes');
   createOwnerRoutes = require('./account/owner/create-owner.routes');
   validateOwnerRoutes = require('./account/owner/validate-owner.routes');
+  validatePropertyRoutes = require('./property/validate-property.routes');
   updateOwnerRoutes = require('./account/owner/update-owner-file.routes');
   changePasswordRoutes = require('./account/change-password.routes');
   getallUserRoutes = require('./user/getall-users.routes');
@@ -41,6 +42,7 @@
   getAllLevel = require('./property/getall-level.routes');
   module.exports = (app) => {
     getallUserRoutes(app);
+    validatePropertyRoutes(app);
     resentCustomerRoutes(app);
     createcustomerRoutes(app);
     updateCustomerRoutes(app);
