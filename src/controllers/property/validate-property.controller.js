@@ -1,7 +1,6 @@
-const config = require("../../../../config/auth.config");
-var jwt = require("jsonwebtoken");
-const db = require("../../../models");
-const { sendMail } = require('../../mailService');
+
+const db = require("../../models");
+const { sendMail } = require('../../controllers/mailService');
 const User = db.user;
 const Property = db.property;
 
