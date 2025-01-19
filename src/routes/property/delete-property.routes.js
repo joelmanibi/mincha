@@ -14,7 +14,7 @@ module.exports = function(app) {
   });
   app.post(
     "/api/property/delete-property/:propertyId",
-    [authJwt.verifyAccountToken],
+    [authJwt.verifyUserToken],
  //   upload.array(),
     controller.deleteProperty
   );
