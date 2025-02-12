@@ -6,7 +6,6 @@ exports.getAllLevel = async (req,res) => {
     try {
 
       const level = await Level.findAll({
-       
       });
       if (level.length == 0) {
         return res.status(403).send({

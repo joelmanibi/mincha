@@ -19,15 +19,12 @@ exports.addAnnouncement = async (req, res) => {
       statutcode: 0
     });
   };
-   
     try {
-
         const property = await Property.findOne({
             where: {
               propertyId: req.body.announcementProperty
             }
           });
-      
           if (!property) {
             return res.status(403).send({
               message: "Cette proprieté n'existe pas dans la base",

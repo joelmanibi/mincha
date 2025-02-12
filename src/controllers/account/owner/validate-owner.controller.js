@@ -39,7 +39,7 @@ exports.validateOwner = async (req, res) => {
             expiresIn: 2592000 // 30 jours
           });
 
-        const account_token = jwt.sign({ userId: user.userAccount }, config.secret, {
+        const account_token = jwt.sign({ accountId: user.userAccount }, config.secret, {
           expiresIn: 2592000 // 30 jours
         });
         
