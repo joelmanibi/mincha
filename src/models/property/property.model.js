@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.INTEGER,
       },
       propertyLocation : {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       propertyPrice: {
         type: Sequelize.INTEGER,

@@ -6,7 +6,7 @@ exports.getAllVisits = async (req,res) => {
   try {
     const visit = await getAllVisit()
     if (visit.length == 0) {
-      return res.status(403).send({
+      return res.status(200).send({
         message: "Aucun rendez-vous trouvé",
         statutcode: 0
       });

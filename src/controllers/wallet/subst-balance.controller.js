@@ -12,7 +12,7 @@ exports.substBalance = async (req, res) => {
         });
 
         if (!user) {
-            return res.status(404).json({
+            return res.status(200).json({
                 message: "Utilisateur introuvable",
             });
         }
@@ -25,7 +25,7 @@ exports.substBalance = async (req, res) => {
         });
 
         if (!wallet) {
-            return res.status(404).json({
+            return res.status(200).json({
                 message: "Aucun compte ou portefeuille trouvé",
             });
         }

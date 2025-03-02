@@ -7,7 +7,7 @@ exports.getAllAccountDocType = async (req,res) => {
       const docType = await AccountDocType.findAll({
       });
       if (docType.length == 0) {
-        return res.status(403).send({
+        return res.status(200).send({
           message: "Aucun Type de account trouvé",
           statutcode: 0
         });

@@ -17,7 +17,7 @@ exports.getBalance = async (req, res) => {
           });
 
           if (!wallet) {
-            return res.status(401).json({
+            return res.status(200).json({
               message: "Aucun compte ou portefeuil trouvé"
             });
           }

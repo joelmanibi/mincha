@@ -6,8 +6,8 @@ exports.getAllAnnouncements = async (req,res) => {
 
       const announcement = await getAllAnnouncement(req.userId)
       if (announcement.length == 0) {
-        return res.status(403).send({
-          message: "Aucune proprieté trouvé"
+        return res.status(200).send({
+          message: "Aucune annonce trouvé"
         });
       };
         res.status(200).json({

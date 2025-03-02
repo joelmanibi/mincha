@@ -8,7 +8,7 @@ exports.getAllMyAnnouncements = async (req,res) => {
 
       const announcement = await getMyAnnouncement(req.accountId)
       if (announcement.length == 0) {
-        return res.status(403).send({
+        return res.status(200).send({
           message: "Aucune proprieté trouvé",
           statutcode: 0
         });

@@ -9,7 +9,7 @@ exports.getAllPropertyType = async (req,res) => {
        
       });
       if (propertyType.length == 0) {
-        return res.status(403).send({
+        return res.status(200).send({
           message: "Aucun Type de proprieté trouvé",
           statutcode: 0
         });

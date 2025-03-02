@@ -8,7 +8,7 @@ exports.getAllLevel = async (req,res) => {
       const level = await Level.findAll({
       });
       if (level.length == 0) {
-        return res.status(403).send({
+        return res.status(200).send({
           message: "Aucun Type de proprieté trouvé"
         });
       };
