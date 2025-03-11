@@ -8,6 +8,7 @@
   createOwnerRoutes = require('./account/owner/create-owner.routes');
   validateOwnerRoutes = require('./account/owner/validate-owner.routes');
   validatePropertyRoutes = require('./property/validate-property.routes');
+  validateAnnouncementRoutes = require('./announcement/validate-announcement.routes');
   updateOwnerRoutes = require('./account/owner/update-owner-file.routes');
   changePasswordRoutes = require('./account/change-password.routes');
   getallUserRoutes = require('./user/getall-users.routes');
@@ -63,6 +64,7 @@
     getAllAccount(app);
     getAllCity(app);
     getAllLevel(app);
+    validateAnnouncementRoutes(app);
     updateUpdateRoutes(app);
     deletePropertyRoutes(app);
     getPropertyphotoRoutes(app);
