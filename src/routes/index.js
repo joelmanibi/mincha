@@ -32,6 +32,7 @@
   viewServiceRoutes = require('./announcement/countAnnouncementView.routes');
   addVisitRoutes = require('./announcement/visit/add-visit.routes');
   getmyVisitRoutes = require('./announcement/visit/getmy-visit.routes');
+  getownerVisitRoutes = require('./announcement/visit/getowner-visit.routes');
   procesFavoriteRoutes = require('./announcement/favorite/process-favorite.routes');
   getmyFavoriteRoutes = require('./announcement/favorite/getmy-favorite.routes');
   getallAnnouncementTypeRoutes = require('./announcement/announcementType/getAnnouncemetType.route');
@@ -45,6 +46,7 @@
     validatePropertyRoutes(app);
     resentCustomerRoutes(app);
     createcustomerRoutes(app);
+    getownerVisitRoutes(app);
     updateCustomerRoutes(app);
     validationCustomerRoutes(app);
     signinCustomerRoutes(app);

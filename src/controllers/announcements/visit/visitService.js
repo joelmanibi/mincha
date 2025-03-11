@@ -111,6 +111,45 @@ const extractVisitData = (req) => {
     return visit;
   };
 
+  const getOwnerVisit = async (accountId) => {
+    const visit = await Visit.findAll({
+        include : [
+            {
+              model: Announcement,
+              include: [
+                {
+                    model: Property,
+                    where : {
+                      ownerId: accountId,
+                    },
+                    include: [
+                       {
+                          model: PropertyType
+                        },
+                        {
+                          model: Ville
+                        },
+                        {
+                          model: PropertyDocType
+                        },
+                        {
+                          model: PropertyLevel
+                        },
+                        {
+                          model: PropertyPhoto
+                        }
+                    ]
+                  },
+                  {
+                    model: AnnouncementType,
+                },
+              ]
+            }
+          ]
+    });
+    return visit;
+  };
+
   const countAnnounceVisit = async (announceId) => {
     const visit = await Visit.findAll({
       where : {
@@ -124,6 +163,7 @@ const extractVisitData = (req) => {
     countAnnounceVisit,
     getAllVisit,
     getMyVisit,
+    getOwnerVisit,
     extractVisitData,
     createVisit,
     ifVisitExist

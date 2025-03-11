@@ -1,10 +1,9 @@
 const db = require("../../../models");
-const { getAllVisit } = require('./visitService');
+const { getOwnerVisit } = require('./visitService');
 
-
-exports.getAllVisits = async (req,res) => {
+exports.getOwnerVisits = async (req,res) => {
   try {
-    const visit = await getAllVisit()
+    const visit = await getOwnerVisit(req.accountId)
     if (visit.length == 0) {
       return res.status(200).send({
         message: "Aucun rendez-vous trouvé"
