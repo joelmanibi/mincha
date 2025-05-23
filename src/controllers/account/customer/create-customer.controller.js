@@ -19,7 +19,8 @@ exports.createCustomer = async (req, res) => {
             userProfilePhoto: null,
             userIdCardFront: null,
             userIdCardBack:null,
-            userIdCardType: null
+            userIdCardType: null,
+            userIsActive:1
           };
           
         const user = await createUser(userData);

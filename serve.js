@@ -1,6 +1,6 @@
 var express = require('express');
 const cors = require("cors");
-const client = require('./config/redis.config');
+// const client = require('./config/redis.config');
 
 var app = express();
 var corsOptions = {
