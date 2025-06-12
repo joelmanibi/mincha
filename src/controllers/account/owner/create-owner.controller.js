@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const db = require("../../../models");
 const User = db.user;
 const { extractCommonAccountData, createAccount } = require('../accountService');
-const { extractCommonUserData, createUser, checkDuplicateUser } = require('../userService');
+const { extractCommonUserData, createUser, checkDuplicateUser, checkDuplicateAccount } = require('../userService');
 const { createWallet } = require('../../wallet/walletService');
 const { sendMail } = require('../../mailService');
 const uploadProfile = require("../../../../helpers/user/uploadFileService");
@@ -24,11 +24,18 @@ exports.createOwner = async (req, res) => {
 
     const commonAccountData = extractCommonAccountData(req);
     const checkDuplicatUser = await checkDuplicateUser(req);
+    const checkDuplicatAccount = await checkDuplicatAccount(req);
 
 
     if(checkDuplicatUser !== null){
      return res.status(401).json({
        message: "Échec ! Numéro de téléphone ou Email déjà utilisé !"
+      });
+    } 
+
+    if(checkDuplicatAccount !== null){
+     return res.status(401).json({
+       message: "Échec ! Numéro de téléphone ou Email déjà utilisé pour un compte!"
       });
     } 
 

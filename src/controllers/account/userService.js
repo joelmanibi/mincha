@@ -1,5 +1,6 @@
 const db = require("../../models");
 const User = db.user;
+const Account = db.account;
 var bcrypt = require("bcryptjs");
 const { Op } = require('sequelize');
 
@@ -29,6 +30,20 @@ const extractCommonUserData = (req) => {
     })
 
     return user
+  };
+
+  const checkDuplicateAccount = async (req) => {
+    const userEmailLowerCase = req.body.userEmail.toLowerCase();
+  const account =   await Account.findOne({
+      where: {
+        [Op.or]: [
+          { accountNumber: req.body.userPhoneNumber },
+          { accountEmail: userEmailLowerCase }
+        ]
+      }
+    })
+
+    return account
   };
 
   // Utilitaires
@@ -100,5 +115,6 @@ const findUserSudoByuserId = async (userId) => {
     createUser,
     findUserByuserId,
     findUserSudoByuserId,
-    checkDuplicateUser
+    checkDuplicateUser,
+    checkDuplicateAccount
   };
